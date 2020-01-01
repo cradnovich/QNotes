@@ -16,6 +16,30 @@
 		24D516B023BC811B002745EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D516AE23BC811B002745EA /* LaunchScreen.storyboard */; };
 		24D516BB23BC811B002745EA /* QNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516BA23BC811B002745EA /* QNotesTests.swift */; };
 		24D516C623BC811B002745EA /* QNotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516C523BC811B002745EA /* QNotesUITests.swift */; };
+		24D516DD23BC8EEF002745EA /* CreateNotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516D723BC8EEF002745EA /* CreateNotePresenter.swift */; };
+		24D516DE23BC8EEF002745EA /* CreateNoteWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516D823BC8EEF002745EA /* CreateNoteWorker.swift */; };
+		24D516DF23BC8EEF002745EA /* CreateNoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516D923BC8EEF002745EA /* CreateNoteRouter.swift */; };
+		24D516E023BC8EEF002745EA /* CreateNoteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516DA23BC8EEF002745EA /* CreateNoteModels.swift */; };
+		24D516E123BC8EEF002745EA /* CreateNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516DB23BC8EEF002745EA /* CreateNoteViewController.swift */; };
+		24D516E223BC8EEF002745EA /* CreateNoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516DC23BC8EEF002745EA /* CreateNoteInteractor.swift */; };
+		24D516EA23BC90A2002745EA /* ListFoldersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E423BC90A2002745EA /* ListFoldersPresenter.swift */; };
+		24D516EB23BC90A2002745EA /* ListFoldersWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E523BC90A2002745EA /* ListFoldersWorker.swift */; };
+		24D516EC23BC90A2002745EA /* ListFoldersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E623BC90A2002745EA /* ListFoldersRouter.swift */; };
+		24D516ED23BC90A2002745EA /* ListFoldersModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E723BC90A2002745EA /* ListFoldersModels.swift */; };
+		24D516EE23BC90A2002745EA /* ListFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E823BC90A2002745EA /* ListFoldersViewController.swift */; };
+		24D516EF23BC90A2002745EA /* ListFoldersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E923BC90A2002745EA /* ListFoldersInteractor.swift */; };
+		24D516F623BC90C3002745EA /* RecycleBinPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F023BC90C3002745EA /* RecycleBinPresenter.swift */; };
+		24D516F723BC90C3002745EA /* RecycleBinWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F123BC90C3002745EA /* RecycleBinWorker.swift */; };
+		24D516F823BC90C3002745EA /* RecycleBinRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F223BC90C3002745EA /* RecycleBinRouter.swift */; };
+		24D516F923BC90C3002745EA /* RecycleBinModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F323BC90C3002745EA /* RecycleBinModels.swift */; };
+		24D516FA23BC90C3002745EA /* RecycleBinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F423BC90C3002745EA /* RecycleBinViewController.swift */; };
+		24D516FB23BC90C3002745EA /* RecycleBinInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F523BC90C3002745EA /* RecycleBinInteractor.swift */; };
+		24D5170223BC910A002745EA /* ListNotesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FC23BC910A002745EA /* ListNotesPresenter.swift */; };
+		24D5170323BC910A002745EA /* ListNotesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FD23BC910A002745EA /* ListNotesWorker.swift */; };
+		24D5170423BC910A002745EA /* ListNotesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FE23BC910A002745EA /* ListNotesRouter.swift */; };
+		24D5170523BC910A002745EA /* ListNotesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FF23BC910A002745EA /* ListNotesModels.swift */; };
+		24D5170623BC910A002745EA /* ListNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D5170023BC910A002745EA /* ListNotesViewController.swift */; };
+		24D5170723BC910A002745EA /* ListNotesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D5170123BC910A002745EA /* ListNotesInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +75,30 @@
 		24D516C123BC811B002745EA /* QNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D516C523BC811B002745EA /* QNotesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QNotesUITests.swift; sourceTree = "<group>"; };
 		24D516C723BC811B002745EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24D516D723BC8EEF002745EA /* CreateNotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNotePresenter.swift; sourceTree = "<group>"; };
+		24D516D823BC8EEF002745EA /* CreateNoteWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteWorker.swift; sourceTree = "<group>"; };
+		24D516D923BC8EEF002745EA /* CreateNoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteRouter.swift; sourceTree = "<group>"; };
+		24D516DA23BC8EEF002745EA /* CreateNoteModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteModels.swift; sourceTree = "<group>"; };
+		24D516DB23BC8EEF002745EA /* CreateNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteViewController.swift; sourceTree = "<group>"; };
+		24D516DC23BC8EEF002745EA /* CreateNoteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteInteractor.swift; sourceTree = "<group>"; };
+		24D516E423BC90A2002745EA /* ListFoldersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersPresenter.swift; sourceTree = "<group>"; };
+		24D516E523BC90A2002745EA /* ListFoldersWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersWorker.swift; sourceTree = "<group>"; };
+		24D516E623BC90A2002745EA /* ListFoldersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersRouter.swift; sourceTree = "<group>"; };
+		24D516E723BC90A2002745EA /* ListFoldersModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersModels.swift; sourceTree = "<group>"; };
+		24D516E823BC90A2002745EA /* ListFoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersViewController.swift; sourceTree = "<group>"; };
+		24D516E923BC90A2002745EA /* ListFoldersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersInteractor.swift; sourceTree = "<group>"; };
+		24D516F023BC90C3002745EA /* RecycleBinPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinPresenter.swift; sourceTree = "<group>"; };
+		24D516F123BC90C3002745EA /* RecycleBinWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinWorker.swift; sourceTree = "<group>"; };
+		24D516F223BC90C3002745EA /* RecycleBinRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinRouter.swift; sourceTree = "<group>"; };
+		24D516F323BC90C3002745EA /* RecycleBinModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinModels.swift; sourceTree = "<group>"; };
+		24D516F423BC90C3002745EA /* RecycleBinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinViewController.swift; sourceTree = "<group>"; };
+		24D516F523BC90C3002745EA /* RecycleBinInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinInteractor.swift; sourceTree = "<group>"; };
+		24D516FC23BC910A002745EA /* ListNotesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesPresenter.swift; sourceTree = "<group>"; };
+		24D516FD23BC910A002745EA /* ListNotesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesWorker.swift; sourceTree = "<group>"; };
+		24D516FE23BC910A002745EA /* ListNotesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesRouter.swift; sourceTree = "<group>"; };
+		24D516FF23BC910A002745EA /* ListNotesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesModels.swift; sourceTree = "<group>"; };
+		24D5170023BC910A002745EA /* ListNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesViewController.swift; sourceTree = "<group>"; };
+		24D5170123BC910A002745EA /* ListNotesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +149,7 @@
 		24D516A023BC8117002745EA /* QNotes */ = {
 			isa = PBXGroup;
 			children = (
+				24D516D323BC8D7D002745EA /* Scenes */,
 				24D516A123BC8117002745EA /* AppDelegate.swift */,
 				24D516A323BC8117002745EA /* SceneDelegate.swift */,
 				24D516A523BC8117002745EA /* MasterViewController.swift */,
@@ -129,6 +178,69 @@
 				24D516C723BC811B002745EA /* Info.plist */,
 			);
 			path = QNotesUITests;
+			sourceTree = "<group>";
+		};
+		24D516D323BC8D7D002745EA /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				24D516E323BC9086002745EA /* ListFolders */,
+				24D516D623BC8D9F002745EA /* RecycleBin */,
+				24D516D523BC8D96002745EA /* ListNotes (Active Folder) */,
+				24D516D423BC8D8A002745EA /* CreateNote */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		24D516D423BC8D8A002745EA /* CreateNote */ = {
+			isa = PBXGroup;
+			children = (
+				24D516D723BC8EEF002745EA /* CreateNotePresenter.swift */,
+				24D516D823BC8EEF002745EA /* CreateNoteWorker.swift */,
+				24D516D923BC8EEF002745EA /* CreateNoteRouter.swift */,
+				24D516DA23BC8EEF002745EA /* CreateNoteModels.swift */,
+				24D516DB23BC8EEF002745EA /* CreateNoteViewController.swift */,
+				24D516DC23BC8EEF002745EA /* CreateNoteInteractor.swift */,
+			);
+			path = CreateNote;
+			sourceTree = "<group>";
+		};
+		24D516D523BC8D96002745EA /* ListNotes (Active Folder) */ = {
+			isa = PBXGroup;
+			children = (
+				24D516FC23BC910A002745EA /* ListNotesPresenter.swift */,
+				24D516FD23BC910A002745EA /* ListNotesWorker.swift */,
+				24D516FE23BC910A002745EA /* ListNotesRouter.swift */,
+				24D516FF23BC910A002745EA /* ListNotesModels.swift */,
+				24D5170023BC910A002745EA /* ListNotesViewController.swift */,
+				24D5170123BC910A002745EA /* ListNotesInteractor.swift */,
+			);
+			path = "ListNotes (Active Folder)";
+			sourceTree = "<group>";
+		};
+		24D516D623BC8D9F002745EA /* RecycleBin */ = {
+			isa = PBXGroup;
+			children = (
+				24D516F023BC90C3002745EA /* RecycleBinPresenter.swift */,
+				24D516F123BC90C3002745EA /* RecycleBinWorker.swift */,
+				24D516F223BC90C3002745EA /* RecycleBinRouter.swift */,
+				24D516F323BC90C3002745EA /* RecycleBinModels.swift */,
+				24D516F423BC90C3002745EA /* RecycleBinViewController.swift */,
+				24D516F523BC90C3002745EA /* RecycleBinInteractor.swift */,
+			);
+			path = RecycleBin;
+			sourceTree = "<group>";
+		};
+		24D516E323BC9086002745EA /* ListFolders */ = {
+			isa = PBXGroup;
+			children = (
+				24D516E423BC90A2002745EA /* ListFoldersPresenter.swift */,
+				24D516E523BC90A2002745EA /* ListFoldersWorker.swift */,
+				24D516E623BC90A2002745EA /* ListFoldersRouter.swift */,
+				24D516E723BC90A2002745EA /* ListFoldersModels.swift */,
+				24D516E823BC90A2002745EA /* ListFoldersViewController.swift */,
+				24D516E923BC90A2002745EA /* ListFoldersInteractor.swift */,
+			);
+			path = ListFolders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,10 +374,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D5170723BC910A002745EA /* ListNotesInteractor.swift in Sources */,
 				24D516A223BC8117002745EA /* AppDelegate.swift in Sources */,
+				24D5170623BC910A002745EA /* ListNotesViewController.swift in Sources */,
+				24D5170223BC910A002745EA /* ListNotesPresenter.swift in Sources */,
+				24D5170423BC910A002745EA /* ListNotesRouter.swift in Sources */,
+				24D516EC23BC90A2002745EA /* ListFoldersRouter.swift in Sources */,
+				24D516DE23BC8EEF002745EA /* CreateNoteWorker.swift in Sources */,
 				24D516A423BC8117002745EA /* SceneDelegate.swift in Sources */,
+				24D516EA23BC90A2002745EA /* ListFoldersPresenter.swift in Sources */,
+				24D516F923BC90C3002745EA /* RecycleBinModels.swift in Sources */,
+				24D516F723BC90C3002745EA /* RecycleBinWorker.swift in Sources */,
+				24D516FA23BC90C3002745EA /* RecycleBinViewController.swift in Sources */,
+				24D516FB23BC90C3002745EA /* RecycleBinInteractor.swift in Sources */,
+				24D5170523BC910A002745EA /* ListNotesModels.swift in Sources */,
+				24D516F823BC90C3002745EA /* RecycleBinRouter.swift in Sources */,
+				24D516F623BC90C3002745EA /* RecycleBinPresenter.swift in Sources */,
+				24D516ED23BC90A2002745EA /* ListFoldersModels.swift in Sources */,
+				24D516DF23BC8EEF002745EA /* CreateNoteRouter.swift in Sources */,
+				24D516EE23BC90A2002745EA /* ListFoldersViewController.swift in Sources */,
+				24D5170323BC910A002745EA /* ListNotesWorker.swift in Sources */,
+				24D516E123BC8EEF002745EA /* CreateNoteViewController.swift in Sources */,
+				24D516DD23BC8EEF002745EA /* CreateNotePresenter.swift in Sources */,
+				24D516EB23BC90A2002745EA /* ListFoldersWorker.swift in Sources */,
 				24D516A623BC8117002745EA /* MasterViewController.swift in Sources */,
+				24D516EF23BC90A2002745EA /* ListFoldersInteractor.swift in Sources */,
 				24D516A823BC8117002745EA /* DetailViewController.swift in Sources */,
+				24D516E223BC8EEF002745EA /* CreateNoteInteractor.swift in Sources */,
+				24D516E023BC8EEF002745EA /* CreateNoteModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,13 +575,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WSGGQUJ7UC;
+				DEVELOPMENT_TEAM = 6D4W6GQ4CC;
 				INFOPLIST_FILE = QNotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.radnovich.QNotes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.radnovich.QuickodeNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,13 +593,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WSGGQUJ7UC;
+				DEVELOPMENT_TEAM = 6D4W6GQ4CC;
 				INFOPLIST_FILE = QNotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.radnovich.QNotes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.radnovich.QuickodeNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
