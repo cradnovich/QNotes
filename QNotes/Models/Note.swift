@@ -10,5 +10,8 @@ import Foundation
 
 struct Note
 {
-  
+  var id: String?
+  let date = Date()
+  var title: String = "New Note"
+  var content: String = ""
 }

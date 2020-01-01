@@ -20,6 +20,7 @@ protocol ListNotesDisplayLogic: class
 class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
 {
   var interactor: ListNotesBusinessLogic?
+  //var folder: ListNotes.Folder = .Working("Inbox") // FIXME:
   var router: (NSObjectProtocol & ListNotesRoutingLogic & ListNotesDataPassing)?
 
   // MARK: Object lifecycle
@@ -66,17 +67,17 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   
   // MARK: View lifecycle
   
-  override func viewDidLoad()
+  override func viewWillAppear(_ animated: Bool)
   {
-    super.viewDidLoad()
-    doSomething()
+    super.viewWillAppear(animated)
+    fetchNotesOnLoad()
   }
   
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!
   
-  func doSomething()
+  func fetchNotesOnLoad()
   {
     let request = ListNotes.FetchNotes.Request()
     interactor?.fetchNotes(request: request)

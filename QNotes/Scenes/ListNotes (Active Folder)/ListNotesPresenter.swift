@@ -21,11 +21,27 @@ class ListNotesPresenter: ListNotesPresentationLogic
 {
   weak var viewController: ListNotesDisplayLogic?
   
+  let dateFormatter: DateFormatter = {
+    let df = DateFormatter()
+    df.dateStyle = .short
+    df.timeStyle = .short
+    
+    return df
+  }()
+  
   // MARK: Do something
   
   func presentFetchedNotes(response: ListNotes.FetchNotes.Response)
   {
-    let viewModel = ListNotes.FetchNotes.ViewModel()
+    // TODO: Convert
+    let notesToDisplay = response.notes.map { (note: Note) -> ListNotes.FetchNotes.ViewModel.DisplayedNote in
+      let date = dateFormatter.string(from: note.date)
+      
+      return ListNotes.FetchNotes.ViewModel.DisplayedNote(id: note.id ?? "", date: date, title: note.title)
+    }
+    
+    
+    let viewModel = ListNotes.FetchNotes.ViewModel(displayedNotes: notesToDisplay)
     viewController?.displayFetchedNotes(viewModel: viewModel)
   }
 }

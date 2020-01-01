@@ -74,6 +74,7 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   
   // MARK: Do something
   
+  @IBOutlet var textView: UITextView!
   //@IBOutlet weak var nameTextField: UITextField!
   
   func doSomething()

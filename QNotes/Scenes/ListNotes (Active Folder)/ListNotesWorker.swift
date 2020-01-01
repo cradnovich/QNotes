@@ -14,7 +14,8 @@ import UIKit
 
 class ListNotesWorker
 {
-  func doSomeWork()
+  func fetchNotes(in folder: ListNotes.Folder, completionHandler: @escaping ([Note]) -> Void)
   {
+    
   }
 }

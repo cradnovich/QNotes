@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol EditNoteRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+  func routeToListNotes(segue: UIStoryboardSegue?)
 }
 
 protocol EditNoteDataPassing
@@ -29,8 +29,8 @@ class EditNoteRouter: NSObject, EditNoteRoutingLogic, EditNoteDataPassing
   
   // MARK: Routing
   
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
+  func routeToListNotes(segue: UIStoryboardSegue?)
+  {
   //  if let segue = segue {
   //    let destinationVC = segue.destination as! SomewhereViewController
   //    var destinationDS = destinationVC.router!.dataStore!
@@ -42,19 +42,19 @@ class EditNoteRouter: NSObject, EditNoteRoutingLogic, EditNoteDataPassing
   //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
   //    navigateToSomewhere(source: viewController!, destination: destinationVC)
   //  }
-  //}
+  }
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: EditNoteViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+  func navigateToListNotes(source: EditNoteViewController, destination: ListNotesViewController)
+  {
+//    source.show(destination, sender: nil)
+  }
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: EditNoteDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+  func passDataToListNotes(source: EditNoteDataStore, destination: inout ListNotesDataStore)
+  {
+//    destination.name = source.name
+  }
 }

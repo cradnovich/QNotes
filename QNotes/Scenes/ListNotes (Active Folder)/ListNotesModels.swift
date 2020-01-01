@@ -14,18 +14,45 @@ import UIKit
 
 enum ListNotes
 {
+  enum Folder : Equatable
+  {
+    case RecycleBin
+    case Working(String)
+    
+    static func ==(lhs: Folder, rhs: Folder) -> Bool
+    {
+      switch (lhs, rhs)
+      {
+      case (.RecycleBin, .RecycleBin): return true
+      case (.Working(let a), .Working(let b)): return a == b
+      default: return false
+      }
+    }
+  }
+  
   // MARK: Use cases
   
   enum FetchNotes
   {
     struct Request
     {
+      //let folder: Folder
     }
     struct Response
     {
+      let notes: [Note]
     }
     struct ViewModel
     {
+      struct DisplayedNote
+      {
+        var id: String
+        var date: String
+        var title: String
+//        var content: String
+      }
+      
+      var displayedNotes: [DisplayedNote]
     }
   }
 }
