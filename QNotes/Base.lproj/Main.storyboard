@@ -81,7 +81,7 @@
                         <sections>
                             <tableViewSection id="gBW-vM-ToL">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Inbox" textLabel="Arm-wq-HPj" imageView="OJL-bJ-5No" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InboxCell" textLabel="Arm-wq-HPj" imageView="OJL-bJ-5No" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
                                         <rect key="frame" x="0.0" y="28" width="414" height="47.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
@@ -102,14 +102,14 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <connections>
-                                            <segue destination="wTv-bB-diq" kind="show" id="gaO-4I-eUH"/>
+                                            <segue destination="wTv-bB-diq" kind="show" identifier="MainFolder" id="gaO-4I-eUH"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="vcF-9M-jQ7">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="qkf-eX-l4Q" imageView="6F9-9r-00U" style="IBUITableViewCellStyleDefault" id="hCH-I3-4Vm">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecycleBinCell" textLabel="qkf-eX-l4Q" imageView="6F9-9r-00U" style="IBUITableViewCellStyleDefault" id="hCH-I3-4Vm">
                                         <rect key="frame" x="0.0" y="131.5" width="414" height="47.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hCH-I3-4Vm" id="wML-sz-wr0">
@@ -129,6 +129,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <connections>
+                                            <segue destination="wTv-bB-diq" kind="show" identifier="RecycleBin" id="4eJ-eb-nN9"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -153,7 +156,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zDM-Hu-GTM">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" id="zDM-Hu-GTM">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zDM-Hu-GTM" id="r9Y-kb-nO0">
@@ -170,11 +173,13 @@
                             <outlet property="delegate" destination="wTv-bB-diq" id="v7y-WL-o8i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="T3O-wn-iac"/>
+                    <navigationItem key="navigationItem" id="T3O-wn-iac">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="8WT-cX-kdW"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smx-yQ-bxm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1599" y="-1147"/>
+            <point key="canvasLocation" x="1598.5507246376812" y="-1147.0982142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
@@ -199,5 +204,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="CVG-5r-pKT"/>
+        <segue reference="4eJ-eb-nN9"/>
     </inferredMetricsTieBreakers>
 </document>

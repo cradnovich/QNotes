@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		24D516A223BC8117002745EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516A123BC8117002745EA /* AppDelegate.swift */; };
 		24D516A423BC8117002745EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516A323BC8117002745EA /* SceneDelegate.swift */; };
-		24D516A623BC8117002745EA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516A523BC8117002745EA /* MasterViewController.swift */; };
-		24D516A823BC8117002745EA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516A723BC8117002745EA /* DetailViewController.swift */; };
 		24D516AB23BC8117002745EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D516A923BC8117002745EA /* Main.storyboard */; };
 		24D516AD23BC811B002745EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24D516AC23BC811B002745EA /* Assets.xcassets */; };
 		24D516B023BC811B002745EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D516AE23BC811B002745EA /* LaunchScreen.storyboard */; };
@@ -63,8 +61,6 @@
 		24D5169E23BC8117002745EA /* QNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D516A123BC8117002745EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24D516A323BC8117002745EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		24D516A523BC8117002745EA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		24D516A723BC8117002745EA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		24D516AA23BC8117002745EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		24D516AC23BC811B002745EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24D516AF23BC811B002745EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -152,8 +148,6 @@
 				24D516D323BC8D7D002745EA /* Scenes */,
 				24D516A123BC8117002745EA /* AppDelegate.swift */,
 				24D516A323BC8117002745EA /* SceneDelegate.swift */,
-				24D516A523BC8117002745EA /* MasterViewController.swift */,
-				24D516A723BC8117002745EA /* DetailViewController.swift */,
 				24D516A923BC8117002745EA /* Main.storyboard */,
 				24D516AC23BC811B002745EA /* Assets.xcassets */,
 				24D516AE23BC811B002745EA /* LaunchScreen.storyboard */,
@@ -397,9 +391,7 @@
 				24D516E123BC8EEF002745EA /* CreateNoteViewController.swift in Sources */,
 				24D516DD23BC8EEF002745EA /* CreateNotePresenter.swift in Sources */,
 				24D516EB23BC90A2002745EA /* ListFoldersWorker.swift in Sources */,
-				24D516A623BC8117002745EA /* MasterViewController.swift in Sources */,
 				24D516EF23BC90A2002745EA /* ListFoldersInteractor.swift in Sources */,
-				24D516A823BC8117002745EA /* DetailViewController.swift in Sources */,
 				24D516E223BC8EEF002745EA /* CreateNoteInteractor.swift in Sources */,
 				24D516E023BC8EEF002745EA /* CreateNoteModels.swift in Sources */,
 			);
