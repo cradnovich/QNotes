@@ -27,12 +27,6 @@
 		24D516ED23BC90A2002745EA /* ListFoldersModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E723BC90A2002745EA /* ListFoldersModels.swift */; };
 		24D516EE23BC90A2002745EA /* ListFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E823BC90A2002745EA /* ListFoldersViewController.swift */; };
 		24D516EF23BC90A2002745EA /* ListFoldersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E923BC90A2002745EA /* ListFoldersInteractor.swift */; };
-		24D516F623BC90C3002745EA /* RecycleBinPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F023BC90C3002745EA /* RecycleBinPresenter.swift */; };
-		24D516F723BC90C3002745EA /* RecycleBinWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F123BC90C3002745EA /* RecycleBinWorker.swift */; };
-		24D516F823BC90C3002745EA /* RecycleBinRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F223BC90C3002745EA /* RecycleBinRouter.swift */; };
-		24D516F923BC90C3002745EA /* RecycleBinModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F323BC90C3002745EA /* RecycleBinModels.swift */; };
-		24D516FA23BC90C3002745EA /* RecycleBinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F423BC90C3002745EA /* RecycleBinViewController.swift */; };
-		24D516FB23BC90C3002745EA /* RecycleBinInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516F523BC90C3002745EA /* RecycleBinInteractor.swift */; };
 		24D5170223BC910A002745EA /* ListNotesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FC23BC910A002745EA /* ListNotesPresenter.swift */; };
 		24D5170323BC910A002745EA /* ListNotesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FD23BC910A002745EA /* ListNotesWorker.swift */; };
 		24D5170423BC910A002745EA /* ListNotesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FE23BC910A002745EA /* ListNotesRouter.swift */; };
@@ -85,12 +79,6 @@
 		24D516E723BC90A2002745EA /* ListFoldersModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersModels.swift; sourceTree = "<group>"; };
 		24D516E823BC90A2002745EA /* ListFoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersViewController.swift; sourceTree = "<group>"; };
 		24D516E923BC90A2002745EA /* ListFoldersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersInteractor.swift; sourceTree = "<group>"; };
-		24D516F023BC90C3002745EA /* RecycleBinPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinPresenter.swift; sourceTree = "<group>"; };
-		24D516F123BC90C3002745EA /* RecycleBinWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinWorker.swift; sourceTree = "<group>"; };
-		24D516F223BC90C3002745EA /* RecycleBinRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinRouter.swift; sourceTree = "<group>"; };
-		24D516F323BC90C3002745EA /* RecycleBinModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinModels.swift; sourceTree = "<group>"; };
-		24D516F423BC90C3002745EA /* RecycleBinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinViewController.swift; sourceTree = "<group>"; };
-		24D516F523BC90C3002745EA /* RecycleBinInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinInteractor.swift; sourceTree = "<group>"; };
 		24D516FC23BC910A002745EA /* ListNotesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesPresenter.swift; sourceTree = "<group>"; };
 		24D516FD23BC910A002745EA /* ListNotesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesWorker.swift; sourceTree = "<group>"; };
 		24D516FE23BC910A002745EA /* ListNotesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesRouter.swift; sourceTree = "<group>"; };
@@ -189,7 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				24D516E323BC9086002745EA /* ListFolders */,
-				24D516D623BC8D9F002745EA /* RecycleBin */,
 				24D516D523BC8D96002745EA /* ListNotes (Active Folder) */,
 				24D516D423BC8D8A002745EA /* EditNote */,
 			);
@@ -220,19 +207,6 @@
 				24D5170123BC910A002745EA /* ListNotesInteractor.swift */,
 			);
 			path = "ListNotes (Active Folder)";
-			sourceTree = "<group>";
-		};
-		24D516D623BC8D9F002745EA /* RecycleBin */ = {
-			isa = PBXGroup;
-			children = (
-				24D516F023BC90C3002745EA /* RecycleBinPresenter.swift */,
-				24D516F123BC90C3002745EA /* RecycleBinWorker.swift */,
-				24D516F223BC90C3002745EA /* RecycleBinRouter.swift */,
-				24D516F323BC90C3002745EA /* RecycleBinModels.swift */,
-				24D516F423BC90C3002745EA /* RecycleBinViewController.swift */,
-				24D516F523BC90C3002745EA /* RecycleBinInteractor.swift */,
-			);
-			path = RecycleBin;
 			sourceTree = "<group>";
 		};
 		24D516E323BC9086002745EA /* ListFolders */ = {
@@ -388,13 +362,7 @@
 				24D516DE23BC8EEF002745EA /* EditNoteWorker.swift in Sources */,
 				24D516A423BC8117002745EA /* SceneDelegate.swift in Sources */,
 				24D516EA23BC90A2002745EA /* ListFoldersPresenter.swift in Sources */,
-				24D516F923BC90C3002745EA /* RecycleBinModels.swift in Sources */,
-				24D516F723BC90C3002745EA /* RecycleBinWorker.swift in Sources */,
-				24D516FA23BC90C3002745EA /* RecycleBinViewController.swift in Sources */,
-				24D516FB23BC90C3002745EA /* RecycleBinInteractor.swift in Sources */,
 				24D5170523BC910A002745EA /* ListNotesModels.swift in Sources */,
-				24D516F823BC90C3002745EA /* RecycleBinRouter.swift in Sources */,
-				24D516F623BC90C3002745EA /* RecycleBinPresenter.swift in Sources */,
 				24D516ED23BC90A2002745EA /* ListFoldersModels.swift in Sources */,
 				24D516DF23BC8EEF002745EA /* EditNoteRouter.swift in Sources */,
 				24D516EE23BC90A2002745EA /* ListFoldersViewController.swift in Sources */,
