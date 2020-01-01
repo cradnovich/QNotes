@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24A2395323BCC64900D55B5D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2395223BCC64900D55B5D /* Note.swift */; };
 		24D516A223BC8117002745EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516A123BC8117002745EA /* AppDelegate.swift */; };
 		24D516A423BC8117002745EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516A323BC8117002745EA /* SceneDelegate.swift */; };
 		24D516AB23BC8117002745EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D516A923BC8117002745EA /* Main.storyboard */; };
@@ -14,12 +15,12 @@
 		24D516B023BC811B002745EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D516AE23BC811B002745EA /* LaunchScreen.storyboard */; };
 		24D516BB23BC811B002745EA /* QNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516BA23BC811B002745EA /* QNotesTests.swift */; };
 		24D516C623BC811B002745EA /* QNotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516C523BC811B002745EA /* QNotesUITests.swift */; };
-		24D516DD23BC8EEF002745EA /* CreateNotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516D723BC8EEF002745EA /* CreateNotePresenter.swift */; };
-		24D516DE23BC8EEF002745EA /* CreateNoteWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516D823BC8EEF002745EA /* CreateNoteWorker.swift */; };
-		24D516DF23BC8EEF002745EA /* CreateNoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516D923BC8EEF002745EA /* CreateNoteRouter.swift */; };
-		24D516E023BC8EEF002745EA /* CreateNoteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516DA23BC8EEF002745EA /* CreateNoteModels.swift */; };
-		24D516E123BC8EEF002745EA /* CreateNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516DB23BC8EEF002745EA /* CreateNoteViewController.swift */; };
-		24D516E223BC8EEF002745EA /* CreateNoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516DC23BC8EEF002745EA /* CreateNoteInteractor.swift */; };
+		24D516DD23BC8EEF002745EA /* EditNotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516D723BC8EEF002745EA /* EditNotePresenter.swift */; };
+		24D516DE23BC8EEF002745EA /* EditNoteWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516D823BC8EEF002745EA /* EditNoteWorker.swift */; };
+		24D516DF23BC8EEF002745EA /* EditNoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516D923BC8EEF002745EA /* EditNoteRouter.swift */; };
+		24D516E023BC8EEF002745EA /* EditNoteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516DA23BC8EEF002745EA /* EditNoteModels.swift */; };
+		24D516E123BC8EEF002745EA /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516DB23BC8EEF002745EA /* EditNoteViewController.swift */; };
+		24D516E223BC8EEF002745EA /* EditNoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516DC23BC8EEF002745EA /* EditNoteInteractor.swift */; };
 		24D516EA23BC90A2002745EA /* ListFoldersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E423BC90A2002745EA /* ListFoldersPresenter.swift */; };
 		24D516EB23BC90A2002745EA /* ListFoldersWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E523BC90A2002745EA /* ListFoldersWorker.swift */; };
 		24D516EC23BC90A2002745EA /* ListFoldersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E623BC90A2002745EA /* ListFoldersRouter.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24A2395223BCC64900D55B5D /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		24D5169E23BC8117002745EA /* QNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D516A123BC8117002745EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24D516A323BC8117002745EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,12 +73,12 @@
 		24D516C123BC811B002745EA /* QNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D516C523BC811B002745EA /* QNotesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QNotesUITests.swift; sourceTree = "<group>"; };
 		24D516C723BC811B002745EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		24D516D723BC8EEF002745EA /* CreateNotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNotePresenter.swift; sourceTree = "<group>"; };
-		24D516D823BC8EEF002745EA /* CreateNoteWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteWorker.swift; sourceTree = "<group>"; };
-		24D516D923BC8EEF002745EA /* CreateNoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteRouter.swift; sourceTree = "<group>"; };
-		24D516DA23BC8EEF002745EA /* CreateNoteModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteModels.swift; sourceTree = "<group>"; };
-		24D516DB23BC8EEF002745EA /* CreateNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteViewController.swift; sourceTree = "<group>"; };
-		24D516DC23BC8EEF002745EA /* CreateNoteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteInteractor.swift; sourceTree = "<group>"; };
+		24D516D723BC8EEF002745EA /* EditNotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotePresenter.swift; sourceTree = "<group>"; };
+		24D516D823BC8EEF002745EA /* EditNoteWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteWorker.swift; sourceTree = "<group>"; };
+		24D516D923BC8EEF002745EA /* EditNoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteRouter.swift; sourceTree = "<group>"; };
+		24D516DA23BC8EEF002745EA /* EditNoteModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteModels.swift; sourceTree = "<group>"; };
+		24D516DB23BC8EEF002745EA /* EditNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteViewController.swift; sourceTree = "<group>"; };
+		24D516DC23BC8EEF002745EA /* EditNoteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteInteractor.swift; sourceTree = "<group>"; };
 		24D516E423BC90A2002745EA /* ListFoldersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersPresenter.swift; sourceTree = "<group>"; };
 		24D516E523BC90A2002745EA /* ListFoldersWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersWorker.swift; sourceTree = "<group>"; };
 		24D516E623BC90A2002745EA /* ListFoldersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersRouter.swift; sourceTree = "<group>"; };
@@ -122,6 +124,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24A2395123BCC5E600D55B5D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				24A2395223BCC64900D55B5D /* Note.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		24D5169523BC8117002745EA = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +155,7 @@
 		24D516A023BC8117002745EA /* QNotes */ = {
 			isa = PBXGroup;
 			children = (
+				24A2395123BCC5E600D55B5D /* Models */,
 				24D516D323BC8D7D002745EA /* Scenes */,
 				24D516A123BC8117002745EA /* AppDelegate.swift */,
 				24D516A323BC8117002745EA /* SceneDelegate.swift */,
@@ -180,22 +191,22 @@
 				24D516E323BC9086002745EA /* ListFolders */,
 				24D516D623BC8D9F002745EA /* RecycleBin */,
 				24D516D523BC8D96002745EA /* ListNotes (Active Folder) */,
-				24D516D423BC8D8A002745EA /* CreateNote */,
+				24D516D423BC8D8A002745EA /* EditNote */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		24D516D423BC8D8A002745EA /* CreateNote */ = {
+		24D516D423BC8D8A002745EA /* EditNote */ = {
 			isa = PBXGroup;
 			children = (
-				24D516D723BC8EEF002745EA /* CreateNotePresenter.swift */,
-				24D516D823BC8EEF002745EA /* CreateNoteWorker.swift */,
-				24D516D923BC8EEF002745EA /* CreateNoteRouter.swift */,
-				24D516DA23BC8EEF002745EA /* CreateNoteModels.swift */,
-				24D516DB23BC8EEF002745EA /* CreateNoteViewController.swift */,
-				24D516DC23BC8EEF002745EA /* CreateNoteInteractor.swift */,
+				24D516D723BC8EEF002745EA /* EditNotePresenter.swift */,
+				24D516D823BC8EEF002745EA /* EditNoteWorker.swift */,
+				24D516D923BC8EEF002745EA /* EditNoteRouter.swift */,
+				24D516DA23BC8EEF002745EA /* EditNoteModels.swift */,
+				24D516DB23BC8EEF002745EA /* EditNoteViewController.swift */,
+				24D516DC23BC8EEF002745EA /* EditNoteInteractor.swift */,
 			);
-			path = CreateNote;
+			path = EditNote;
 			sourceTree = "<group>";
 		};
 		24D516D523BC8D96002745EA /* ListNotes (Active Folder) */ = {
@@ -374,7 +385,7 @@
 				24D5170223BC910A002745EA /* ListNotesPresenter.swift in Sources */,
 				24D5170423BC910A002745EA /* ListNotesRouter.swift in Sources */,
 				24D516EC23BC90A2002745EA /* ListFoldersRouter.swift in Sources */,
-				24D516DE23BC8EEF002745EA /* CreateNoteWorker.swift in Sources */,
+				24D516DE23BC8EEF002745EA /* EditNoteWorker.swift in Sources */,
 				24D516A423BC8117002745EA /* SceneDelegate.swift in Sources */,
 				24D516EA23BC90A2002745EA /* ListFoldersPresenter.swift in Sources */,
 				24D516F923BC90C3002745EA /* RecycleBinModels.swift in Sources */,
@@ -385,15 +396,16 @@
 				24D516F823BC90C3002745EA /* RecycleBinRouter.swift in Sources */,
 				24D516F623BC90C3002745EA /* RecycleBinPresenter.swift in Sources */,
 				24D516ED23BC90A2002745EA /* ListFoldersModels.swift in Sources */,
-				24D516DF23BC8EEF002745EA /* CreateNoteRouter.swift in Sources */,
+				24D516DF23BC8EEF002745EA /* EditNoteRouter.swift in Sources */,
 				24D516EE23BC90A2002745EA /* ListFoldersViewController.swift in Sources */,
 				24D5170323BC910A002745EA /* ListNotesWorker.swift in Sources */,
-				24D516E123BC8EEF002745EA /* CreateNoteViewController.swift in Sources */,
-				24D516DD23BC8EEF002745EA /* CreateNotePresenter.swift in Sources */,
+				24D516E123BC8EEF002745EA /* EditNoteViewController.swift in Sources */,
+				24D516DD23BC8EEF002745EA /* EditNotePresenter.swift in Sources */,
 				24D516EB23BC90A2002745EA /* ListFoldersWorker.swift in Sources */,
+				24A2395323BCC64900D55B5D /* Note.swift in Sources */,
 				24D516EF23BC90A2002745EA /* ListFoldersInteractor.swift in Sources */,
-				24D516E223BC8EEF002745EA /* CreateNoteInteractor.swift in Sources */,
-				24D516E023BC8EEF002745EA /* CreateNoteModels.swift in Sources */,
+				24D516E223BC8EEF002745EA /* EditNoteInteractor.swift in Sources */,
+				24D516E023BC8EEF002745EA /* EditNoteModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

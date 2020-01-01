@@ -1,5 +1,5 @@
 //
-//  CreateNoteWorker.swift
+//  EditNoteWorker.swift
 //  QNotes
 //
 //  Created by Meir Radnovich on 01/01/2020.
@@ -12,7 +12,7 @@
 
 import UIKit
 
-class CreateNoteWorker
+class EditNoteWorker
 {
   func doSomeWork()
   {

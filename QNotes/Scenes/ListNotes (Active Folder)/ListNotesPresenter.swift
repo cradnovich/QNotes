@@ -14,7 +14,7 @@ import UIKit
 
 protocol ListNotesPresentationLogic
 {
-  func presentSomething(response: ListNotes.Something.Response)
+  func presentFetchedNotes(response: ListNotes.FetchNotes.Response)
 }
 
 class ListNotesPresenter: ListNotesPresentationLogic
@@ -23,9 +23,9 @@ class ListNotesPresenter: ListNotesPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: ListNotes.Something.Response)
+  func presentFetchedNotes(response: ListNotes.FetchNotes.Response)
   {
-    let viewModel = ListNotes.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+    let viewModel = ListNotes.FetchNotes.ViewModel()
+    viewController?.displayFetchedNotes(viewModel: viewModel)
   }
 }

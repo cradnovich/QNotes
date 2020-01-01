@@ -16,7 +16,7 @@ enum ListNotes
 {
   // MARK: Use cases
   
-  enum Something
+  enum FetchNotes
   {
     struct Request
     {

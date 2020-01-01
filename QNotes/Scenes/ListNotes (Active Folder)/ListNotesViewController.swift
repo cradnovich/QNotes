@@ -14,7 +14,7 @@ import UIKit
 
 protocol ListNotesDisplayLogic: class
 {
-  func displaySomething(viewModel: ListNotes.Something.ViewModel)
+  func displayFetchedNotes(viewModel: ListNotes.FetchNotes.ViewModel)
 }
 
 class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
@@ -78,11 +78,11 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   
   func doSomething()
   {
-    let request = ListNotes.Something.Request()
-    interactor?.doSomething(request: request)
+    let request = ListNotes.FetchNotes.Request()
+    interactor?.fetchNotes(request: request)
   }
   
-  func displaySomething(viewModel: ListNotes.Something.ViewModel)
+  func displayFetchedNotes(viewModel: ListNotes.FetchNotes.ViewModel)
   {
     //nameTextField.text = viewModel.name
   }

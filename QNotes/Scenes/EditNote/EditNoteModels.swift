@@ -1,5 +1,5 @@
 //
-//  CreateNoteModels.swift
+//  EditNoteModels.swift
 //  QNotes
 //
 //  Created by Meir Radnovich on 01/01/2020.
@@ -12,11 +12,11 @@
 
 import UIKit
 
-enum CreateNote
+enum EditNote
 {
   // MARK: Use cases
   
-  enum Something
+  enum EditNote
   {
     struct Request
     {

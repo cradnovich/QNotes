@@ -1,5 +1,5 @@
 //
-//  CreateNoteRouter.swift
+//  EditNoteRouter.swift
 //  QNotes
 //
 //  Created by Meir Radnovich on 01/01/2020.
@@ -12,20 +12,20 @@
 
 import UIKit
 
-@objc protocol CreateNoteRoutingLogic
+@objc protocol EditNoteRoutingLogic
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
-protocol CreateNoteDataPassing
+protocol EditNoteDataPassing
 {
-  var dataStore: CreateNoteDataStore? { get }
+  var dataStore: EditNoteDataStore? { get }
 }
 
-class CreateNoteRouter: NSObject, CreateNoteRoutingLogic, CreateNoteDataPassing
+class EditNoteRouter: NSObject, EditNoteRoutingLogic, EditNoteDataPassing
 {
-  weak var viewController: CreateNoteViewController?
-  var dataStore: CreateNoteDataStore?
+  weak var viewController: EditNoteViewController?
+  var dataStore: EditNoteDataStore?
   
   // MARK: Routing
   
@@ -46,14 +46,14 @@ class CreateNoteRouter: NSObject, CreateNoteRoutingLogic, CreateNoteDataPassing
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: CreateNoteViewController, destination: SomewhereViewController)
+  //func navigateToSomewhere(source: EditNoteViewController, destination: SomewhereViewController)
   //{
   //  source.show(destination, sender: nil)
   //}
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: CreateNoteDataStore, destination: inout SomewhereDataStore)
+  //func passDataToSomewhere(source: EditNoteDataStore, destination: inout SomewhereDataStore)
   //{
   //  destination.name = source.name
   //}

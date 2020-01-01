@@ -14,7 +14,7 @@ import UIKit
 
 protocol ListNotesBusinessLogic
 {
-  func doSomething(request: ListNotes.Something.Request)
+  func fetchNotes(request: ListNotes.FetchNotes.Request)
 }
 
 protocol ListNotesDataStore
@@ -30,12 +30,12 @@ class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
   
   // MARK: Do something
   
-  func doSomething(request: ListNotes.Something.Request)
+  func fetchNotes(request: ListNotes.FetchNotes.Request)
   {
     worker = ListNotesWorker()
     worker?.doSomeWork()
     
-    let response = ListNotes.Something.Response()
-    presenter?.presentSomething(response: response)
+    let response = ListNotes.FetchNotes.Response()
+    presenter?.presentFetchedNotes(response: response)
   }
 }

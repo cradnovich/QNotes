@@ -1,5 +1,5 @@
 //
-//  CreateNoteViewController.swift
+//  EditNoteViewController.swift
 //  QNotes
 //
 //  Created by Meir Radnovich on 01/01/2020.
@@ -12,15 +12,15 @@
 
 import UIKit
 
-protocol CreateNoteDisplayLogic: class
+protocol EditNoteDisplayLogic: class
 {
-  func displaySomething(viewModel: CreateNote.Something.ViewModel)
+  func displayNoteToEdit(viewModel: EditNote.EditNote.ViewModel)
 }
 
-class CreateNoteViewController: UIViewController, CreateNoteDisplayLogic
+class EditNoteViewController: UIViewController, EditNoteDisplayLogic
 {
-  var interactor: CreateNoteBusinessLogic?
-  var router: (NSObjectProtocol & CreateNoteRoutingLogic & CreateNoteDataPassing)?
+  var interactor: EditNoteBusinessLogic?
+  var router: (NSObjectProtocol & EditNoteRoutingLogic & EditNoteDataPassing)?
 
   // MARK: Object lifecycle
   
@@ -41,9 +41,9 @@ class CreateNoteViewController: UIViewController, CreateNoteDisplayLogic
   private func setup()
   {
     let viewController = self
-    let interactor = CreateNoteInteractor()
-    let presenter = CreateNotePresenter()
-    let router = CreateNoteRouter()
+    let interactor = EditNoteInteractor()
+    let presenter = EditNotePresenter()
+    let router = EditNoteRouter()
     viewController.interactor = interactor
     viewController.router = router
     interactor.presenter = presenter
@@ -78,11 +78,11 @@ class CreateNoteViewController: UIViewController, CreateNoteDisplayLogic
   
   func doSomething()
   {
-    let request = CreateNote.Something.Request()
+    let request = EditNote.EditNote.Request()
     interactor?.doSomething(request: request)
   }
   
-  func displaySomething(viewModel: CreateNote.Something.ViewModel)
+  func displayNoteToEdit(viewModel: EditNote.EditNote.ViewModel)
   {
     //nameTextField.text = viewModel.name
   }

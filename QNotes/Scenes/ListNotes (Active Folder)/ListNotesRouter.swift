@@ -14,7 +14,8 @@ import UIKit
 
 @objc protocol ListNotesRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+  func routeToEditNote(segue: UIStoryboardSegue?)
+  func routeToComposeNote(segue: UIStoryboardSegue?)
 }
 
 protocol ListNotesDataPassing
@@ -29,8 +30,8 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
   
   // MARK: Routing
   
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
+  func routeToEditNote(segue: UIStoryboardSegue?)
+  {
   //  if let segue = segue {
   //    let destinationVC = segue.destination as! SomewhereViewController
   //    var destinationDS = destinationVC.router!.dataStore!
@@ -42,19 +43,46 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
   //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
   //    navigateToSomewhere(source: viewController!, destination: destinationVC)
   //  }
-  //}
+  }
 
+  func routeToComposeNote(segue: UIStoryboardSegue?)
+  {
+  //  if let segue = segue {
+  //    let destinationVC = segue.destination as! SomewhereViewController
+  //    var destinationDS = destinationVC.router!.dataStore!
+  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+  //  } else {
+  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
+  //    var destinationDS = destinationVC.router!.dataStore!
+  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
+  //  }
+  }
+  
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: ListNotesViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+  func navigateToEditNote(source: ListNotesViewController, destination: EditNoteViewController)
+  {
+    
+  }
+  
+  func navigateToComposeNote(source: ListNotesViewController, destination: EditNoteViewController)
+  {
+    source.show(destination, sender: nil)
+  }
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: ListNotesDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+  func passDataToEditNote(source: ListNotesDataStore, destination: inout EditNoteDataStore)
+  {
+//    destination.name = source.name
+  }
+  
+  func passDataToComposeNote(source: ListNotesDataStore, destination: inout EditNoteDataStore)
+    {
+  //    destination.name = source.name
+    }
+    
+    
 }
