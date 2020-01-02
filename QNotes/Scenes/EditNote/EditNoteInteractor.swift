@@ -14,28 +14,51 @@ import UIKit
 
 protocol EditNoteBusinessLogic
 {
-  func doSomething(request: EditNote.EditNote.Request)
+  func openNote(request: EditNote.OpenNote.Request)
+  //func createNote(request: EditNote.CreateNote.Request)
+  func updateNote(request: EditNote.UpdateNote.Request)
+  func recycleNote(request: EditNote.RecycleNote.Request)
+  func deleteNote(request: EditNote.DeleteNote.Request)
 }
 
 protocol EditNoteDataStore
 {
-  //var name: String { get set }
+  var note: Note? { get set }
 }
 
 class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
 {
   var presenter: EditNotePresentationLogic?
   var worker: EditNoteWorker?
-  //var name: String = ""
+  var note: Note?
   
   // MARK: Do something
   
-  func doSomething(request: EditNote.EditNote.Request)
+  func openNote(request: EditNote.OpenNote.Request)
   {
-    worker = EditNoteWorker()
-    worker?.doSomeWork()
+    guard let n = note else
+    {
+      // TODO:
+      return
+    }
     
-    let response = EditNote.EditNote.Response()
+    let response = EditNote.OpenNote.Response(note: n)
     presenter?.presentNoteToEdit(response: response)
   }
+  
+  func updateNote(request: EditNote.UpdateNote.Request)
+  {
+    
+  }
+  
+  func recycleNote(request: EditNote.RecycleNote.Request)
+  {
+    
+  }
+  
+  func deleteNote(request: EditNote.DeleteNote.Request)
+  {
+    
+  }
+
 }

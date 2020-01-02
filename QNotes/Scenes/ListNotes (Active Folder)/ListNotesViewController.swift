@@ -20,7 +20,6 @@ protocol ListNotesDisplayLogic: class
 class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
 {
   var interactor: ListNotesBusinessLogic?
-  //var folder: ListNotes.Folder = .Working("Inbox") // FIXME:
   var router: (NSObjectProtocol & ListNotesRoutingLogic & ListNotesDataPassing)?
 
   // MARK: Object lifecycle

@@ -14,9 +14,13 @@ import UIKit
 
 @objc protocol ListFoldersRoutingLogic
 {
+  func routeToMainFolder(segue: UIStoryboardSegue?)
+  func routeToRecycleBin(segue: UIStoryboardSegue?)
+  
   //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
+// TODO: Currently only have 2 hard coded folders, so leave this unused
 protocol ListFoldersDataPassing
 {
   var dataStore: ListFoldersDataStore? { get }
@@ -28,6 +32,28 @@ class ListFoldersRouter: NSObject, ListFoldersRoutingLogic, ListFoldersDataPassi
   var dataStore: ListFoldersDataStore?
   
   // MARK: Routing
+  
+  func routeToMainFolder(segue: UIStoryboardSegue?)
+  {
+    guard let myDS = dataStore, let vc = viewController else
+    {
+      // TODO: Handle missing piece error
+      return
+    }
+    
+    if let segue = segue, let destinationVC = segue.destination as? ListNotesViewController,
+      var destinationDS = destinationVC.router?.dataStore
+    {
+      
+      passDataToMainFolder(source: myDS, destination: &destinationDS)
+      navigateToMainFolder(source: vc, destination: destinationVC)
+    }
+  }
+  
+  func routeToRecycleBin(segue: UIStoryboardSegue?)
+  {
+    
+  }
   
   //func routeToSomewhere(segue: UIStoryboardSegue?)
   //{
@@ -43,7 +69,7 @@ class ListFoldersRouter: NSObject, ListFoldersRoutingLogic, ListFoldersDataPassi
   //    navigateToSomewhere(source: viewController!, destination: destinationVC)
   //  }
   //}
-
+  
   // MARK: Navigation
   
   //func navigateToSomewhere(source: ListFoldersViewController, destination: SomewhereViewController)
@@ -51,10 +77,26 @@ class ListFoldersRouter: NSObject, ListFoldersRoutingLogic, ListFoldersDataPassi
   //  source.show(destination, sender: nil)
   //}
   
+  func navigateToMainFolder(source: ListFoldersViewController, destination: ListNotesViewController)
+  {
+    
+  }
+  
+  func navigateToRecycleBin(source: ListFoldersViewController, destination: ListNotesViewController)
+  {
+    
+  }
+  
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: ListFoldersDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+  func passDataToMainFolder(source: ListFoldersDataStore, destination: inout ListNotesDataStore)
+  {
+    //destination.name = source.name
+    destination.folder = ListNotes.Folder.Inbox
+  }
+  
+  func passDataToRecycleBin(source: ListFoldersDataStore, destination: inout ListNotesDataStore)
+  {
+    destination.folder = ListNotes.Folder.RecycleBin
+  }
 }

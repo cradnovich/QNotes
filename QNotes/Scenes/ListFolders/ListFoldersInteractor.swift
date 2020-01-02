@@ -14,28 +14,28 @@ import UIKit
 
 protocol ListFoldersBusinessLogic
 {
-  func doSomething(request: ListFolders.Something.Request)
+//  func doSomething(request: ListFolders.Something.Request)
 }
 
 protocol ListFoldersDataStore
 {
-  //var name: String { get set }
+//  var name: String { get set }
 }
 
 class ListFoldersInteractor: ListFoldersBusinessLogic, ListFoldersDataStore
 {
   var presenter: ListFoldersPresentationLogic?
   var worker: ListFoldersWorker?
-  //var name: String = ""
   
   // MARK: Do something
   
+  // TODO: Retrieve a list on folder names, for example
   func doSomething(request: ListFolders.Something.Request)
   {
-    worker = ListFoldersWorker()
-    worker?.doSomeWork()
-    
-    let response = ListFolders.Something.Response()
-    presenter?.presentSomething(response: response)
+//    worker = ListFoldersWorker()
+//    worker?.doSomeWork()
+//
+//    let response = ListFolders.Something.Response()
+//    presenter?.presentSomething(response: response)
   }
 }

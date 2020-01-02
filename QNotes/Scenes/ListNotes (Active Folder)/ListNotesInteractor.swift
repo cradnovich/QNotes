@@ -26,7 +26,7 @@ protocol ListNotesDataStore
 class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
 {
   var presenter: ListNotesPresentationLogic?
-  var folder = ListNotes.Folder.Working("Inbox") // FIXME:
+  var folder = ListNotes.Folder.Inbox
   var worker: ListNotesWorker?
   var notes: [Note]?
   

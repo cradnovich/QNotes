@@ -21,7 +21,7 @@ class ListNotesPresenter: ListNotesPresentationLogic
 {
   weak var viewController: ListNotesDisplayLogic?
   
-  let dateFormatter: DateFormatter = {
+  private let dateFormatter: DateFormatter = {
     let df = DateFormatter()
     df.dateStyle = .short
     df.timeStyle = .short

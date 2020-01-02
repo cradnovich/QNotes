@@ -14,7 +14,7 @@ import UIKit
 
 protocol EditNoteDisplayLogic: class
 {
-  func displayNoteToEdit(viewModel: EditNote.EditNote.ViewModel)
+  func displayNoteToEdit(viewModel: EditNote.OpenNote.ViewModel)
 }
 
 class EditNoteViewController: UIViewController, EditNoteDisplayLogic
@@ -69,22 +69,39 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
+    openNoteToEdit()
   }
   
   // MARK: Do something
   
+  func openNoteToEdit()
+  {
+    let request = EditNote.OpenNote.Request()
+    interactor?.openNote(request: request)
+  }
+  
   @IBOutlet var textView: UITextView!
   //@IBOutlet weak var nameTextField: UITextField!
   
-  func doSomething()
+  func saveNote(content: String)
   {
-    let request = EditNote.EditNote.Request()
-    interactor?.doSomething(request: request)
+    let request = EditNote.UpdateNote.Request(content: content)
+    interactor?.updateNote(request: request)
   }
   
-  func displayNoteToEdit(viewModel: EditNote.EditNote.ViewModel)
+  func displayNoteToEdit(viewModel: EditNote.OpenNote.ViewModel)
   {
-    //nameTextField.text = viewModel.name
+    DispatchQueue.main.async {
+      self.textView.text = viewModel.content
+      self.title = viewModel.title
+    }
+  }
+}
+
+extension EditNoteViewController: UITextViewDelegate
+{
+  func textViewDidChange(_ textView: UITextView)
+  {
+    
   }
 }

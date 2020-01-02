@@ -28,6 +28,8 @@ enum ListNotes
       default: return false
       }
     }
+    
+    static let Inbox = Working("Inbox")
   }
   
   // MARK: Use cases

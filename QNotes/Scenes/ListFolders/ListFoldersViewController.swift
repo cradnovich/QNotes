@@ -12,9 +12,10 @@
 
 import UIKit
 
+// NOTE: The folders are hard-coded in the storyboard, so this isn't currently used
 protocol ListFoldersDisplayLogic: class
 {
-  func displaySomething(viewModel: ListFolders.Something.ViewModel)
+//  func displaySomething(viewModel: ListFolders.Something.ViewModel)
 }
 
 class ListFoldersViewController: UITableViewController, ListFoldersDisplayLogic
@@ -47,7 +48,7 @@ class ListFoldersViewController: UITableViewController, ListFoldersDisplayLogic
     viewController.interactor = interactor
     viewController.router = router
     interactor.presenter = presenter
-    presenter.viewController = viewController
+    //presenter.viewController = viewController
     router.viewController = viewController
     router.dataStore = interactor
   }
@@ -78,8 +79,8 @@ class ListFoldersViewController: UITableViewController, ListFoldersDisplayLogic
   
   func doSomething()
   {
-    let request = ListFolders.Something.Request()
-    interactor?.doSomething(request: request)
+//    let request = ListFolders.Something.Request()
+//    interactor?.doSomething(request: request)
   }
   
   func displaySomething(viewModel: ListFolders.Something.ViewModel)
