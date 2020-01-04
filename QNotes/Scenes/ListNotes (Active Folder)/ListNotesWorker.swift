@@ -14,8 +14,29 @@ import UIKit
 
 class ListNotesWorker
 {
-  func fetchNotes(in folder: ListNotes.Folder, completionHandler: @escaping ([Note]) -> Void)
+  var notesStore: NotesStoreProtocol
+  
+  init(store: NotesStoreProtocol)
   {
-    
+    notesStore = store
+  }
+  
+  func fetchNotes(in folder: Folder, completionHandler: @escaping ([Note]) -> Void)
+  {
+    notesStore.fetchNotes(in: folder) { (result: Result<[Note], QNotesError>) -> Void in
+      
+      switch result
+      {
+      case let .success(notes):
+        DispatchQueue.main.async {
+          completionHandler(notes)
+        }
+      case let .failure(error):
+        DispatchQueue.main.async {
+          
+          completionHandler([])
+        }
+      }
+    }
   }
 }

@@ -92,11 +92,11 @@ class ListFoldersRouter: NSObject, ListFoldersRoutingLogic, ListFoldersDataPassi
   func passDataToMainFolder(source: ListFoldersDataStore, destination: inout ListNotesDataStore)
   {
     //destination.name = source.name
-    destination.folder = ListNotes.Folder.Inbox
+    destination.folder = Folder.Inbox
   }
   
   func passDataToRecycleBin(source: ListFoldersDataStore, destination: inout ListNotesDataStore)
   {
-    destination.folder = ListNotes.Folder.RecycleBin
+    destination.folder = Folder.RecycleBin
   }
 }

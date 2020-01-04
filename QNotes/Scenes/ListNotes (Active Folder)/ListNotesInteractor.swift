@@ -19,26 +19,25 @@ protocol ListNotesBusinessLogic
 
 protocol ListNotesDataStore
 {
-  var folder: ListNotes.Folder { get set }
+  var folder: Folder { get set }
   var notes: [Note]? { get }
 }
 
 class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
 {
   var presenter: ListNotesPresentationLogic?
-  var folder = ListNotes.Folder.Inbox
-  var worker: ListNotesWorker?
+  var folder = Folder.Inbox
+  var worker = ListNotesWorker(store: NotesFileStore())
   var notes: [Note]?
   
   // MARK: Do something
   
   func fetchNotes(request: ListNotes.FetchNotes.Request)
   {
-    worker = ListNotesWorker()
-    worker?.fetchNotes(in: folder) { (notes: [Note]) in
+    worker.fetchNotes(in: folder) { (notes: [Note]) in
       self.notes = notes
 
-      let response = ListNotes.FetchNotes.Response(notes: notes)
+      let response = ListNotes.FetchNotes.Response(folder: self.folder, notes: notes)
       self.presenter?.presentFetchedNotes(response: response)
     }
   }

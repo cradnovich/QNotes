@@ -21,7 +21,8 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
 {
   var interactor: ListNotesBusinessLogic?
   var router: (NSObjectProtocol & ListNotesRoutingLogic & ListNotesDataPassing)?
-
+  var displayedNotes: [ListNotes.FetchNotes.ViewModel.DisplayedNote] = []
+  
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -74,8 +75,6 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   
   // MARK: Do something
   
-  //@IBOutlet weak var nameTextField: UITextField!
-  
   func fetchNotesOnLoad()
   {
     let request = ListNotes.FetchNotes.Request()
@@ -84,6 +83,10 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   
   func displayFetchedNotes(viewModel: ListNotes.FetchNotes.ViewModel)
   {
-    //nameTextField.text = viewModel.name
+    DispatchQueue.main.async {
+      self.title = viewModel.folderTitle
+      self.displayedNotes = viewModel.displayedNotes
+      self.tableView.reloadData()
+    }
   }
 }

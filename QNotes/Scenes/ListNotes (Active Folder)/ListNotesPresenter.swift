@@ -40,8 +40,15 @@ class ListNotesPresenter: ListNotesPresentationLogic
       return ListNotes.FetchNotes.ViewModel.DisplayedNote(id: note.id ?? "", date: date, title: note.title)
     }
     
+    // TODO: Move this code out when multiple folders are supported.
+    let folderTitle: String
     
-    let viewModel = ListNotes.FetchNotes.ViewModel(displayedNotes: notesToDisplay)
+    switch response.folder {
+    case .RecycleBin: folderTitle = NSLocalizedString("Recycle Bin", comment: "")
+    case .Working(let folderName): folderTitle = NSLocalizedString(folderName, comment: "")
+    }
+    
+    let viewModel = ListNotes.FetchNotes.ViewModel(folderTitle: folderTitle, displayedNotes: notesToDisplay)
     viewController?.displayFetchedNotes(viewModel: viewModel)
   }
 }
