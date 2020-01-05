@@ -17,7 +17,7 @@ class NotesMemStore : NotesStoreProtocol, NotesStoreUtilityProtocol
   
   func createNote(noteToCreate: Note, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   {
-    var note = noteToCreate
+    let note = noteToCreate
     note.id = generateId()
     
     type(of: self).dummyData[folder]?.append(note)
@@ -27,7 +27,7 @@ class NotesMemStore : NotesStoreProtocol, NotesStoreUtilityProtocol
   
   func updateNote(noteToUpdate: Note, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   {
-    if var idx = type(of: self).dummyData[folder]?.firstIndex(of: noteToUpdate)
+    if let idx = type(of: self).dummyData[folder]?.firstIndex(of: noteToUpdate)
     {
       type(of: self).dummyData[folder]?[idx] = noteToUpdate
       
@@ -101,5 +101,14 @@ class NotesMemStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     return completionHandler(.success([]))
   }
   
-  
+  func fetchNote(id: String, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
+  {
+    if let note = type(of: self).dummyData[folder]?.first(where: {$0.id == id})
+    {
+      completionHandler(.success(note))
+      return
+    }
+    
+    completionHandler(.failure(.noteNotFound(id)))
+  }
 }

@@ -218,6 +218,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addNoteButton" destination="8WT-cX-kdW" id="Yqe-DO-Ygx"/>
+                        <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="ComposeNote" id="hTR-3N-vgA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smx-yQ-bxm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -246,7 +247,7 @@
         <image name="tray" catalog="system" width="64" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CVG-5r-pKT"/>
+        <segue reference="hTR-3N-vgA"/>
         <segue reference="4eJ-eb-nN9"/>
     </inferredMetricsTieBreakers>
 </document>

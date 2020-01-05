@@ -107,7 +107,7 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
     displayedNotes.insert(dn, at: 0)
     tableView.reloadData()
     
-    router?.routeToEditNote(segue: nil)
+    performSegue(withIdentifier: "ComposeNote", sender: nil)
   }
   
   @IBAction func addNote(_ sender: Any)

@@ -43,7 +43,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
   {
     // Update the title
     
-    
+    noteToUpdate.title = generateTitle(for: noteToUpdate)
     
     // Save the file
     
@@ -75,6 +75,31 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     }
 
     return .success(noteToSave)
+  }
+  
+  func fetchNote(id: String, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
+  {
+    let noteURL = fileURLForNote(withId: id, in: folder)
+    
+    guard fileManager.fileExists(atPath: noteURL.path) else
+    {
+      completionHandler(.failure(.fileNotFound(noteURL)))
+      return
+    }
+    
+    do
+    {
+      let n = try note(at: noteURL)
+      completionHandler(.success(n))
+    }
+    catch let err as QNotesError
+    {
+      completionHandler(.failure(err))
+    }
+    catch
+    {
+      completionHandler(.failure(.systemError(error)))
+    }
   }
   
   func fetchNotes(in folder: Folder, completionHandler: @escaping (Result<[Note], QNotesError>)  -> Void)
@@ -196,6 +221,11 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
       throw QNotesError.untitledNote
     }
     
+    return fileURLForNote(withId: id, in: folder)
+  }
+  
+  private func fileURLForNote(withId id: String, in folder: Folder) -> URL
+  {
     return url(for: folder).appendingPathComponent(id).appendingPathExtension("txt")
   }
 }

@@ -10,6 +10,7 @@ import Foundation
 
 enum QNotesError : Error
 {
+  case noteNotFound(String)
   case fileNotFound(URL)
   case untitledNote
   case systemError(Error)

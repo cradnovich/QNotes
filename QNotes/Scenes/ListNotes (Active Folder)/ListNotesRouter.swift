@@ -54,15 +54,22 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
   func routeToComposeNote(segue: UIStoryboardSegue?)
   {
     if let segue = segue {
-      let destinationVC = segue.destination as! EditNoteViewController
-      var destinationDS = destinationVC.router!.dataStore!
-      passDataToComposeNote(source: dataStore!, destination: &destinationDS)
+      // FIXME: Hackish
+      guard let destinationVC = segue.destination as? EditNoteViewController ?? ((segue.destination as? UINavigationController)?.viewControllers.first as? EditNoteViewController) else
+      {
+        fatalError("Couldn't reach the EditNoteViewController on the other side")
+      }
+      
+      guard let ds = dataStore, var destinationDS = destinationVC.router?.dataStore else
+      {
+        fatalError("Couldn't find the ListNotesRouter's dataStore or the Editor's dataStore")
+      }
+      
+      passDataToComposeNote(source: ds, destination: &destinationDS)
     } else {
-//      let destinationVC = viewController?.storyboard?.instantiateViewController(withIdentifier: "ShowOrderViewController") as! ShowOrderViewController
-//      var destinationDS = destinationVC.router!.dataStore!
-//      passDataToShowOrder(source: dataStore!, destination: &destinationDS)
-//      navigateToShowOrder(source: viewController!, destination: destinationVC)
+      // TODO!
     }
+    
   }
   
   // MARK: Navigation
@@ -74,7 +81,6 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
   
   func navigateToComposeNote(source: ListNotesViewController, destination: EditNoteViewController)
   {
-    source.show(destination, sender: nil)
   }
   
   // MARK: Passing data
@@ -88,6 +94,8 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
       
       return
     }
+    
+    
     
     destination.note = source.notes[idx]
   }
