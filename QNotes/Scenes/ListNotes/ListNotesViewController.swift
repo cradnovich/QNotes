@@ -136,10 +136,12 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
       let request = ListNotes.RecycleNote.Request(id: displayedNote.id)
       self.interactor?.recycleNote(request: request)
 
-      self.fetchNotesOnLoad()
-//      self.tableView.deleteRows(at: [indexPath], with: .automatic)
+      self.displayedNotes.remove(at: indexPath.row)
+      self.tableView.deleteRows(at: [indexPath], with: .automatic)
       completionHandler(true)
     }
+    
+    action.backgroundColor = UIColor.systemBlue
     
     return action
   }
@@ -152,8 +154,8 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
       let request = ListNotes.DeleteNote.Request(id: displayedNote.id)
       self.interactor?.deleteNote(request: request)
       
-      self.fetchNotesOnLoad()
-      //self.tableView.deleteRows(at: [indexPath], with: .automatic)
+      self.displayedNotes.remove(at: indexPath.row)
+      self.tableView.deleteRows(at: [indexPath], with: .automatic)
       completionHandler(true)
     }
     
@@ -168,10 +170,12 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
       let request = ListNotes.RestoreNote.Request(id: displayedNote.id)
       self.interactor?.restoreNote(request: request)
         
-      self.fetchNotesOnLoad()
-      //self.tableView.deleteRows(at: [indexPath], with: .automatic)
+      self.displayedNotes.remove(at: indexPath.row)
+      self.tableView.deleteRows(at: [indexPath], with: .automatic)
       completionHandler(true)
     }
+    
+    action.backgroundColor = UIColor.systemGreen
     
     return action
   }

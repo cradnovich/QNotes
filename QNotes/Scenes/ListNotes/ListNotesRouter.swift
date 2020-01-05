@@ -53,7 +53,8 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
     
   func routeToComposeNote(segue: UIStoryboardSegue?)
   {
-    if let segue = segue {
+    if let segue = segue
+    {
       // FIXME: Hackish
       guard let destinationVC = segue.destination as? EditNoteViewController ?? ((segue.destination as? UINavigationController)?.viewControllers.first as? EditNoteViewController) else
       {
@@ -66,7 +67,9 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
       }
       
       passDataToComposeNote(source: ds, destination: &destinationDS)
-    } else {
+    }
+    else
+    {
       // TODO!
     }
     
