@@ -95,8 +95,6 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
       return
     }
     
-    
-    
     destination.note = source.notes[idx]
   }
   

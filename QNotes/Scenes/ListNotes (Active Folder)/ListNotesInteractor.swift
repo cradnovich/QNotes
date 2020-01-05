@@ -14,10 +14,12 @@ import UIKit
 
 protocol ListNotesBusinessLogic
 {
+  func fetchNote(request: ListNotes.FetchNote.Request)
   func fetchNotes(request: ListNotes.FetchNotes.Request)
   func createNote(request: ListNotes.CreateNote.Request)
   func recycleNote(request: ListNotes.RecycleNote.Request)
   func deleteNote(request: ListNotes.DeleteNote.Request)
+  func restoreNote(request: ListNotes.RestoreNote.Request)
 }
 
 protocol ListNotesDataStore
@@ -35,6 +37,10 @@ class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
   
   // MARK: Do something
   
+  func fetchNote(request: ListNotes.FetchNote.Request)
+  {
+  }
+  
   func fetchNotes(request: ListNotes.FetchNotes.Request)
   {
     worker.fetchNotes(in: folder) { (notes: [Note]) in
@@ -45,14 +51,38 @@ class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
     }
   }
   
+  func restoreNote(request: ListNotes.RestoreNote.Request)
+  {
+    guard let n = notes.first(where: {$0.id == request.id}) else
+    {
+      // TODO: Error handling
+      return
+    }
+    
+    // TODO: Multi-folder support
+    worker.restoreNote(noteToRestore: n) { (note: Note?) in
+      //      let response = ListNotes.RecycleNote.Response()
+    }
+  }
+  
   func recycleNote(request: ListNotes.RecycleNote.Request)
   {
+    guard let n = notes.first(where: {$0.id == request.id}) else
+    {
+      // TODO: Error handling
+      return
+    }
     
+    worker.recycleNote(noteToRecycle: n, in: folder) { (note: Note?) in
+//      let response = ListNotes.RecycleNote.Response()
+    }
   }
   
   func deleteNote(request: ListNotes.DeleteNote.Request)
   {
-    
+    worker.deleteNote(id: request.id) { (note: Note?) in
+      // TODO
+    }
   }
 
   func createNote(request: ListNotes.CreateNote.Request)

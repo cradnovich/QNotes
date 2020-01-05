@@ -78,7 +78,7 @@ class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
     n.content = request.content
     
     worker.updateNote(noteToUpdate: n, in: Folder.Inbox) { (updatedNote: Note?) -> Void in
-      
+      self.note = updatedNote
     }
   }
   

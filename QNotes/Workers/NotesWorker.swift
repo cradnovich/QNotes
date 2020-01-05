@@ -21,6 +21,57 @@ class NotesWorker
     notesStore = store
   }
   
+  func restoreNote(noteToRestore: Note, completionHandler: @escaping (Note?) -> Void)
+  {
+    notesStore.restoreNote(noteToRestore: noteToRestore) { (result: Result<Note, QNotesError>) -> Void in
+      switch result
+      {
+      case let .success(n):
+        DispatchQueue.main.async {
+          completionHandler(n)
+        }
+      case .failure:
+        DispatchQueue.main.async {
+          completionHandler(nil)
+        }
+      }
+    }
+  }
+  
+  func recycleNote(noteToRecycle: Note, in folder: Folder, completionHandler: @escaping (Note?) -> Void)
+  {
+    notesStore.recycleNote(noteToRecycle: noteToRecycle) { (result: Result<Note, QNotesError>) -> Void in
+      switch result
+      {
+      case let .success(n):
+        DispatchQueue.main.async {
+          completionHandler(n)
+        }
+      case .failure:
+        DispatchQueue.main.async {
+          completionHandler(nil)
+        }
+      }
+    }
+  }
+  
+  func deleteNote(id: String, completionHandler: @escaping (Note?) -> Void)
+  {
+    notesStore.deleteNote(id: id) { (result: Result<Note?, QNotesError>) in
+      switch result
+      {
+      case let .success(n):
+        DispatchQueue.main.async {
+          completionHandler(n)
+        }
+      case .failure:
+        DispatchQueue.main.async {
+          completionHandler(nil)
+        }
+      }
+    }
+  }
+  
   func createNote(noteToCreate: Note, in folder: Folder, completionHandler: @escaping (Note?) -> Void)
   {
     notesStore.createNote(noteToCreate: noteToCreate, in: folder) { (result: Result<Note, QNotesError>) -> Void in

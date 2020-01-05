@@ -73,6 +73,18 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   
   // MARK: View lifecycle
   
+  override func viewDidLoad()
+  {
+    super.viewDidLoad()
+    
+    if !isRecycling
+    {
+      let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote(_:)))
+      
+      navigationItem.rightBarButtonItem = addButton
+    }
+  }
+  
   override func viewWillAppear(_ animated: Bool)
   {
     super.viewWillAppear(animated)
@@ -116,7 +128,55 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
     interactor?.createNote(request: request)
   }
   
-  // MARK: UITableViewDataSource methods
+  private func contextualRecycleAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction
+  {
+    let displayedNote = displayedNotes[indexPath.row]
+    
+    let action = UIContextualAction(style: .normal, title: NSLocalizedString("Move to Recycle Bin", comment: "")) { (contextualAction: UIContextualAction, view: UIView, completionHandler: @escaping (Bool) -> Void) in
+      let request = ListNotes.RecycleNote.Request(id: displayedNote.id)
+      self.interactor?.recycleNote(request: request)
+
+      self.fetchNotesOnLoad()
+//      self.tableView.deleteRows(at: [indexPath], with: .automatic)
+      completionHandler(true)
+    }
+    
+    return action
+  }
+  
+  private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction
+  {
+    let displayedNote = displayedNotes[indexPath.row]
+    
+    let action = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "")) { (contextualAction: UIContextualAction, view: UIView, completionHandler: @escaping (Bool) -> Void) in
+      let request = ListNotes.DeleteNote.Request(id: displayedNote.id)
+      self.interactor?.deleteNote(request: request)
+      
+      self.fetchNotesOnLoad()
+      //self.tableView.deleteRows(at: [indexPath], with: .automatic)
+      completionHandler(true)
+    }
+    
+    return action
+  }
+  
+  private func contextualRestoreAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction
+  {
+    let displayedNote = displayedNotes[indexPath.row]
+    
+    let action = UIContextualAction(style: .normal, title: NSLocalizedString("Restore", comment: "")) { (contextualAction: UIContextualAction, view: UIView, completionHandler: @escaping (Bool) -> Void) in
+      let request = ListNotes.RestoreNote.Request(id: displayedNote.id)
+      self.interactor?.restoreNote(request: request)
+        
+      self.fetchNotesOnLoad()
+      //self.tableView.deleteRows(at: [indexPath], with: .automatic)
+      completionHandler(true)
+    }
+    
+    return action
+  }
+  
+  // MARK: UITableViewDataSource and UITableViewDelegate methods
   
   override func numberOfSections(in tableView: UITableView) -> Int
   {
@@ -138,6 +198,33 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
     cell.detailTextLabel?.text = note.date
     
     return cell
+  }
+  
+  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+  {
+    let action: UIContextualAction
+    
+    if isRecycling
+    {
+      action = contextualDeleteAction(forRowAtIndexPath: indexPath)
+    }
+    else
+    {
+      action = contextualRecycleAction(forRowAtIndexPath: indexPath)
+    }
+
+    return UISwipeActionsConfiguration(actions: [action])
+  }
+  
+  override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+  {
+    guard isRecycling else
+    {
+      return nil
+    }
+    
+    let action = contextualRestoreAction(forRowAtIndexPath: indexPath)
+    return UISwipeActionsConfiguration(actions: [action])
   }
   
 }

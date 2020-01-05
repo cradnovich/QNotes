@@ -209,15 +209,8 @@
                             <outlet property="delegate" destination="wTv-bB-diq" id="v7y-WL-o8i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="T3O-wn-iac">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8WT-cX-kdW">
-                            <connections>
-                                <action selector="addNote:" destination="wTv-bB-diq" id="wvL-ZJ-Zmn"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="T3O-wn-iac"/>
                     <connections>
-                        <outlet property="addNoteButton" destination="8WT-cX-kdW" id="Yqe-DO-Ygx"/>
                         <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="ComposeNote" id="hTR-3N-vgA"/>
                     </connections>
                 </tableViewController>

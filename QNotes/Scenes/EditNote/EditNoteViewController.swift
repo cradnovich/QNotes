@@ -74,12 +74,25 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   override func viewWillAppear(_ animated: Bool)
   {
     super.viewWillAppear(animated)
-    updateButtons()
+    
+  }
+  
+  override func viewDidAppear(_ animated: Bool)
+  {
+    super.viewDidAppear(animated)
+    
+    if !isRecycling
+    {
+      textView.becomeFirstResponder()
+    }
   }
   
   override func viewDidLoad()
   {
     super.viewDidLoad()
+    updateButtons()
+    
+    
     openNoteToEdit()
   }
   

@@ -25,6 +25,22 @@ enum ListNotes
   
   // MARK: Use cases
   
+  enum FetchNote
+  {
+    struct Request
+    {
+      let id: String
+    }
+    struct Response
+    {
+      let note: Note?
+    }
+    struct ViewModel
+    {
+      
+    }
+  }
+  
   enum FetchNotes
   {
     struct Request
@@ -61,7 +77,7 @@ enum ListNotes
   {
     struct Request
     {
-      
+      let id: String
     }
     struct Response
     {
@@ -77,7 +93,23 @@ enum ListNotes
   {
     struct Request
     {
+      let id: String
+    }
+    struct Response
+    {
       
+    }
+    struct ViewModel
+    {
+      
+    }
+  }
+  
+  enum RestoreNote
+  {
+    struct Request
+    {
+      let id: String
     }
     struct Response
     {
