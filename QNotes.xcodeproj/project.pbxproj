@@ -212,7 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				24D516E323BC9086002745EA /* ListFolders */,
-				24D516D523BC8D96002745EA /* ListNotes (Active Folder) */,
+				24D516D523BC8D96002745EA /* ListNotes */,
 				24D516D423BC8D8A002745EA /* EditNote */,
 			);
 			path = Scenes;
@@ -231,7 +231,7 @@
 			path = EditNote;
 			sourceTree = "<group>";
 		};
-		24D516D523BC8D96002745EA /* ListNotes (Active Folder) */ = {
+		24D516D523BC8D96002745EA /* ListNotes */ = {
 			isa = PBXGroup;
 			children = (
 				24D516FC23BC910A002745EA /* ListNotesPresenter.swift */,
@@ -240,7 +240,7 @@
 				24D5170023BC910A002745EA /* ListNotesViewController.swift */,
 				24D5170123BC910A002745EA /* ListNotesInteractor.swift */,
 			);
-			path = "ListNotes (Active Folder)";
+			path = ListNotes;
 			sourceTree = "<group>";
 		};
 		24D516E323BC9086002745EA /* ListFolders */ = {
