@@ -33,7 +33,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
       }
     }
   
-    var note = noteToCreate
+    let note = noteToCreate
     note.id = generateId()
     
     completionHandler(save(note: note, to: folder))

@@ -69,7 +69,7 @@ class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
   
   func updateNote(request: EditNote.UpdateNote.Request)
   {
-    guard var n = note else
+    guard let n = note else
     {
       // TODO: Figure out how this could be called when there isn't an active note.
       return

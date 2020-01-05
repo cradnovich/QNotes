@@ -8,12 +8,20 @@
 
 import Foundation
 
-struct Note : Equatable
+class Note : Equatable
 {
   var id: String?
-  var date = Date()
-  var title = "New Note"
-  var content = ""
+  var date: Date
+  var title: String
+  var content: String
+  
+  init(id: String? = nil, date: Date = Date(), title: String = "New Note", content: String = "")
+  {
+    self.id = id
+    self.date = date
+    self.title = title
+    self.content = content
+  }
   
   static func ==(lhs: Note, rhs: Note) -> Bool
   {
