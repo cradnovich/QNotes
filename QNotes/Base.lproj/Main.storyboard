@@ -200,7 +200,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" id="CVG-5r-pKT"/>
+                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="EditNote" id="CVG-5r-pKT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

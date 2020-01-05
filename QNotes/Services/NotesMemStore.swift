@@ -12,7 +12,7 @@ class NotesMemStore : NotesStoreProtocol, NotesStoreUtilityProtocol
 {
   static private var dummyData: [Folder:[Note]] = [
     Folder.Inbox:[Note(id: "abcd", date: Date(timeIntervalSince1970: 80000.9), title: "Old tyme note", content: "This is an old note from early 1970. Computers: who needs 'em, amirite?"), Note(id: "numpty", date: Date(timeIntervalSinceReferenceDate: -98765432.32), title: "Grungy", content: "The 5750s? Just guessing when this note was written."), Note(id: "even further back", date: Date(timeIntervalSince1970: -90000000.0), title: "Sorting test, should be at bottom.", content: "Here is another note for your enjoyment. However, it has no content."), Note(id: "superego", date: Date(), title: "Floater", content: "This note was just generated when you launched the app. Yay!")],
-    .RecycleBin:[Note(id: "aluminum", date: Date(timeIntervalSince1970: 12345678.9), title: "Aluminum or aluminium?", content: "This can is not made of tin. Been sitting in the recycling been for a while now."), Note(id: "newspaper", date: Date(timeIntervalSinceReferenceDate: 90000.33), title: "Recyclable paper", content: "'Member newspapers?! LOL!"), Note(id: "content", date: Date(timeIntervalSinceNow: -3600 * 24.0), title: "Yesterday", content: "Troubles seemed so far away.")]
+    .RecycleBin:[Note(id: "aluminum", date: Date(timeIntervalSince1970: 12345678.9), title: "Aluminum or aluminium?", content: "This can is not made of tin. Been sitting in the recycling bin for a while now."), Note(id: "newspaper", date: Date(timeIntervalSinceReferenceDate: 90000.33), title: "Recyclable paper", content: "'Member newspapers?! LOL!"), Note(id: "content", date: Date(timeIntervalSinceNow: -3600 * 24.0), title: "Yesterday", content: "Troubles seemed so far away.")]
   ]
   
   func createNote(noteToCreate: Note, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
@@ -27,12 +27,11 @@ class NotesMemStore : NotesStoreProtocol, NotesStoreUtilityProtocol
   
   func updateNote(noteToUpdate: Note, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   {
-    if var match = type(of: self).dummyData[folder]?.first(where: {noteToUpdate.id == $0.id})
+    if var idx = type(of: self).dummyData[folder]?.firstIndex(of: noteToUpdate)
     {
-      match.content = noteToUpdate.content
-      match.title = noteToUpdate.title
+      type(of: self).dummyData[folder]?[idx] = noteToUpdate
       
-      completionHandler(.success(match))
+      completionHandler(.success(noteToUpdate))
       return
     }
     
