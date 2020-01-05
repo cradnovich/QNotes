@@ -15,6 +15,7 @@ import UIKit
 protocol ListNotesPresentationLogic
 {
   func presentFetchedNotes(response: ListNotes.FetchNotes.Response)
+  func presentCreatedNote(response: ListNotes.CreateNote.Response)
 }
 
 class ListNotesPresenter: ListNotesPresentationLogic
@@ -60,10 +61,10 @@ class ListNotesPresenter: ListNotesPresentationLogic
     viewController?.displayFetchedNotes(viewModel: viewModel)
   }
   
-//  func presentCreatedNote(response: ListNotes.CreateNote.Response)
-//  {
-//    let noteForDisplay = prepareForListDisplay(note: response.note)
-//    let vm = ListNotes.CreateNote.ViewModel(displayedNote: noteForDisplay)
-//    viewController?.displayCreatedNote(viewModel: vm)
-//  }
+  func presentCreatedNote(response: ListNotes.CreateNote.Response)
+  {
+    let noteForDisplay = prepareForListDisplay(note: response.note)
+    let vm = ListNotes.CreateNote.ViewModel(displayedNote: noteForDisplay)
+    viewController?.displayCreatedNote(viewModel: vm)
+  }
 }

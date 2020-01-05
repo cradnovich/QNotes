@@ -18,14 +18,63 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
   
   func createNote(noteToCreate: Note, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   {
+    let folderUrl = url(for: folder)
+    
+    if !fileManager.fileExists(atPath: folderUrl.path)
+    {
+      do
+      {
+        try fileManager.createDirectory(at: folderUrl, withIntermediateDirectories: true, attributes: nil)
+      }
+      catch
+      {
+        completionHandler(.failure(.systemError(error)))
+        return
+      }
+    }
+  
     var note = noteToCreate
     note.id = generateId()
     
+    completionHandler(save(note: note, to: folder))
   }
   
   func updateNote(noteToUpdate: Note, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   {
-     
+    // Update the title
+    
+    
+    
+    // Save the file
+    
+    let res = save(note: noteToUpdate, to: folder)
+    
+    completionHandler(res)
+  }
+  
+  private func save(note noteToSave: Note, to folder: Folder) -> Result<Note, QNotesError>
+  {
+    do
+    {
+      let u = try fileURL(for: noteToSave, in: folder)
+      
+      guard let d = noteToSave.content.data(using: .utf8) else
+      {
+        throw QNotesError.encodingFailure(noteToSave.content)
+      }
+      
+      try d.write(to: u, options: .atomicWrite)
+    }
+    catch let err as QNotesError
+    {
+      return .failure(err)
+    }
+    catch
+    {
+      return .failure(.systemError(error))
+    }
+
+    return .success(noteToSave)
   }
   
   func fetchNotes(in folder: Folder, completionHandler: @escaping (Result<[Note], QNotesError>)  -> Void)
@@ -55,7 +104,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     }
   }
   
-  func deleteNote(id: String, from folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
+  func deleteNote(id: String, completionHandler: @escaping (Result<Note?, QNotesError>) -> Void)
   {
     
   }
@@ -64,7 +113,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
   {
     do
     {
-      let recycledLocation = try file(for: noteToRestore, in: Folder.RecycleBin)
+      let recycledLocation = try fileURL(for: noteToRestore, in: Folder.RecycleBin)
       
       guard fileManager.fileExists(atPath: recycledLocation.absoluteString) else
       {
@@ -73,7 +122,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
       }
       
       // FIXME: Hard-coded "active" folder
-      let noteLocation = try file(for: noteToRestore, in: Folder.Inbox)
+      let noteLocation = try fileURL(for: noteToRestore, in: Folder.Inbox)
 
       try fileManager.moveItem(at: recycledLocation, to: noteLocation)
     }
@@ -97,7 +146,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     do
     {
       // FIXME: Hard-coded "active" folder
-      let noteLocation = try file(for: noteToRecycle, in: Folder.Inbox)
+      let noteLocation = try fileURL(for: noteToRecycle, in: Folder.Inbox)
       
       guard fileManager.fileExists(atPath: noteLocation.absoluteString) else
       {
@@ -105,7 +154,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
         return
       }
 
-      let recycledLocation = try file(for: noteToRecycle, in: Folder.RecycleBin)
+      let recycledLocation = try fileURL(for: noteToRecycle, in: Folder.RecycleBin)
       
       try fileManager.moveItem(at: noteLocation, to: recycledLocation)
     }
@@ -140,7 +189,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     return documentsFolder.appendingPathComponent(folder.name, isDirectory: true)
   }
   
-  private func file(for note: Note, in folder: Folder) throws -> URL
+  private func fileURL(for note: Note, in folder: Folder) throws -> URL
   {
     guard let id = note.id else
     {

@@ -12,6 +12,8 @@
 		2454B2C323BE3CA000341F65 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454B2C223BE3CA000341F65 /* Folder.swift */; };
 		2454B2C523C140D100341F65 /* ErrorDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2454B2C423C140D100341F65 /* ErrorDisplayer.swift */; };
 		24A2395323BCC64900D55B5D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2395223BCC64900D55B5D /* Note.swift */; };
+		24A51B7B23C24076001973F3 /* NotesMemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A51B7A23C24076001973F3 /* NotesMemStore.swift */; };
+		24A51B7D23C24819001973F3 /* QNotesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A51B7C23C24819001973F3 /* QNotesError.swift */; };
 		24D516A223BC8117002745EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516A123BC8117002745EA /* AppDelegate.swift */; };
 		24D516A423BC8117002745EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516A323BC8117002745EA /* SceneDelegate.swift */; };
 		24D516AB23BC8117002745EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D516A923BC8117002745EA /* Main.storyboard */; };
@@ -62,6 +64,8 @@
 		2454B2C223BE3CA000341F65 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		2454B2C423C140D100341F65 /* ErrorDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDisplayer.swift; sourceTree = "<group>"; };
 		24A2395223BCC64900D55B5D /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		24A51B7A23C24076001973F3 /* NotesMemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesMemStore.swift; sourceTree = "<group>"; };
+		24A51B7C23C24819001973F3 /* QNotesError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QNotesError.swift; sourceTree = "<group>"; };
 		24D5169E23BC8117002745EA /* QNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D516A123BC8117002745EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24D516A323BC8117002745EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 				2454B2BE23BE041C00341F65 /* NotesStoreProtocol.swift */,
 				2454B2C023BE101600341F65 /* NotesFileStore.swift */,
 				2454B2C423C140D100341F65 /* ErrorDisplayer.swift */,
+				24A51B7A23C24076001973F3 /* NotesMemStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 			children = (
 				24A2395223BCC64900D55B5D /* Note.swift */,
 				2454B2C223BE3CA000341F65 /* Folder.swift */,
+				24A51B7C23C24819001973F3 /* QNotesError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -403,7 +409,9 @@
 				24D516DD23BC8EEF002745EA /* EditNotePresenter.swift in Sources */,
 				24D516EB23BC90A2002745EA /* ListFoldersWorker.swift in Sources */,
 				24A2395323BCC64900D55B5D /* Note.swift in Sources */,
+				24A51B7D23C24819001973F3 /* QNotesError.swift in Sources */,
 				24D516EF23BC90A2002745EA /* ListFoldersInteractor.swift in Sources */,
+				24A51B7B23C24076001973F3 /* NotesMemStore.swift in Sources */,
 				24D516E223BC8EEF002745EA /* EditNoteInteractor.swift in Sources */,
 				24D516E023BC8EEF002745EA /* EditNoteModels.swift in Sources */,
 			);

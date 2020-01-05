@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Folder : Equatable
+enum Folder : Hashable
 {
   case RecycleBin
   case Working(String)

@@ -8,10 +8,15 @@
 
 import Foundation
 
-struct Note
+struct Note : Equatable
 {
   var id: String?
-  var date: Date = Date()
-  var title: String = "New Note"
-  var content: String = ""
+  var date = Date()
+  var title = "New Note"
+  var content = ""
+  
+  static func ==(lhs: Note, rhs: Note) -> Bool
+  {
+    return lhs.id == rhs.id // Just compare based on ID for simplicity. Even if a note has been edited in memory, it is still the same note.
+  }
 }

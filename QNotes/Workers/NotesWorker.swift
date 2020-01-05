@@ -23,17 +23,37 @@ class NotesWorker
   
   func createNote(noteToCreate: Note, in folder: Folder, completionHandler: @escaping (Note?) -> Void)
   {
-    
     notesStore.createNote(noteToCreate: noteToCreate, in: folder) { (result: Result<Note, QNotesError>) -> Void in
-      
+      switch result
+      {
+      case let .success(note):
+        DispatchQueue.main.async {
+          completionHandler(note)
+        }
+//      case let .failure(error):
+      case .failure:
+        DispatchQueue.main.async {
+          completionHandler(nil)
+        }
+      }
     }
   }
   
   func updateNote(noteToUpdate: Note, in folder: Folder, completionHandler: @escaping (Note?) -> Void)
   {
     notesStore.updateNote(noteToUpdate: noteToUpdate, in: folder) { (result: Result<Note, QNotesError>) -> Void in
-      
-      
+      switch result
+      {
+      case let .success(note):
+        DispatchQueue.main.async {
+          completionHandler(note)
+        }
+      //      case let .failure(error):
+      case .failure:
+        DispatchQueue.main.async {
+          completionHandler(nil)
+        }
+      }
     }
   }
 

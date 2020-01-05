@@ -15,7 +15,7 @@ import UIKit
 protocol ListNotesDisplayLogic: class
 {
   func displayFetchedNotes(viewModel: ListNotes.FetchNotes.ViewModel)
-//  func displayCreatedNote(viewModel: ListNotes.CreateNote.ViewModel)
+  func displayCreatedNote(viewModel: ListNotes.CreateNote.ViewModel)
 }
 
 class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
@@ -24,7 +24,7 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   var router: (NSObjectProtocol & ListNotesRoutingLogic & ListNotesDataPassing)?
   var displayedNotes: [ListNotes.DisplayedNote] = []
   var isRecycling = false
-  @IBOutlet var composeRestoreButton: UIBarButtonItem!
+  @IBOutlet var addNoteButton: UIBarButtonItem!
   
   
   // MARK: Object lifecycle
@@ -76,16 +76,6 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   override func viewWillAppear(_ animated: Bool)
   {
     super.viewWillAppear(animated)
-    
-    if isRecycling
-    {
-      composeRestoreButton.image = UIImage(systemName: "arrow.uturn.up.square")
-    }
-    else
-    {
-      composeRestoreButton.image = UIImage(systemName: "square.and.pencil")
-    }
-    
     fetchNotesOnLoad()
   }
   
@@ -106,16 +96,48 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
     }
   }
   
-//  func displayCreatedNote(viewModel: ListNotes.CreateNote.ViewModel)
-//  {
-//    guard let dn = viewModel.displayedNote else
-//    {
-//      showErrorMessage(title: "Failed to Create Note", message: "Couldn't compose a new note at this time.") // FIXME: Show a real reason, reduce aggravation…
-//      return
-//    }
-//
-//    self.displayedNotes.insert(dn, at: 0)
-//    router?.routeToEditNote(segue: nil)
-//  }
+  func displayCreatedNote(viewModel: ListNotes.CreateNote.ViewModel)
+  {
+    guard let dn = viewModel.displayedNote else
+    {
+      showErrorMessage(title: "Failed to Create Note", message: "Couldn't compose a new note at this time.") // FIXME: Show a real reason, reduce aggravation…
+      return
+    }
+
+    displayedNotes.insert(dn, at: 0)
+    tableView.reloadData()
+    
+    router?.routeToEditNote(segue: nil)
+  }
+  
+  @IBAction func addNote(_ sender: Any)
+  {
+    let request = ListNotes.CreateNote.Request()
+    interactor?.createNote(request: request)
+  }
+  
+  // MARK: UITableViewDataSource methods
+  
+  override func numberOfSections(in tableView: UITableView) -> Int
+  {
+    return 1
+  }
+  
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+  {
+    return displayedNotes.count
+  }
+  
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+  {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath)
+    
+    let note = displayedNotes[indexPath.row]
+    
+    cell.textLabel?.text = note.title
+    cell.detailTextLabel?.text = note.date
+    
+    return cell
+  }
   
 }

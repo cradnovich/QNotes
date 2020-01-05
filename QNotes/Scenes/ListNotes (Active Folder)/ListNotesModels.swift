@@ -42,6 +42,21 @@ enum ListNotes
     }
   }
   
+  enum CreateNote
+  {
+    struct Request
+    {
+    }
+    struct Response
+    {
+      var note: Note?
+    }
+    struct ViewModel
+    {
+      var displayedNote: DisplayedNote?
+    }
+  }
+  
   enum RecycleNote
   {
     struct Request

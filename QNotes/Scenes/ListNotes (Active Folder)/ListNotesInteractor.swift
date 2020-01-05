@@ -15,7 +15,7 @@ import UIKit
 protocol ListNotesBusinessLogic
 {
   func fetchNotes(request: ListNotes.FetchNotes.Request)
-//  func createNote(request: ListNotes.CreateNote.Request)
+  func createNote(request: ListNotes.CreateNote.Request)
   func recycleNote(request: ListNotes.RecycleNote.Request)
   func deleteNote(request: ListNotes.DeleteNote.Request)
 }
@@ -30,7 +30,7 @@ class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
 {
   var presenter: ListNotesPresentationLogic?
   var folder = Folder.Inbox
-  var worker = NotesWorker(store: NotesFileStore())
+  var worker = NotesWorker(store: NotesMemStore())
   var notes: [Note] = []
   
   // MARK: Do something
@@ -38,9 +38,9 @@ class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
   func fetchNotes(request: ListNotes.FetchNotes.Request)
   {
     worker.fetchNotes(in: folder) { (notes: [Note]) in
-      self.notes = notes
+      self.notes = notes.sorted(by: { $0.date > $1.date })
 
-      let response = ListNotes.FetchNotes.Response(folder: self.folder, notes: notes)
+      let response = ListNotes.FetchNotes.Response(folder: self.folder, notes: self.notes)
       self.presenter?.presentFetchedNotes(response: response)
     }
   }
@@ -54,10 +54,23 @@ class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
   {
     
   }
-  
 
-  
-//  func createNote(request: ListNotes.CreateNote.Request)
-//  {
-//  }
+  func createNote(request: ListNotes.CreateNote.Request)
+  {
+    let newNote = Note()
+    
+    // FIXME: Add support for other folders, remove hard-coded Inbox
+    worker.createNote(noteToCreate: newNote, in: folder) { (note: Note?) -> Void in
+      guard let n = note else
+      {
+        // TODO: Handle note creation failure
+        return
+      }
+      
+      self.notes.insert(n, at: 0)
+      
+      let response = ListNotes.CreateNote.Response(note: n)
+      self.presenter?.presentCreatedNote(response: response)
+    }
+  }
 }

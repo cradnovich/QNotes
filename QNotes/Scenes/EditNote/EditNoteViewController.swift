@@ -22,6 +22,8 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   var interactor: EditNoteBusinessLogic?
   var router: (NSObjectProtocol & EditNoteRoutingLogic & EditNoteDataPassing)?
   var isRecycling = false
+  @IBOutlet private var recycleDeleteButton: UIBarButtonItem!
+  @IBOutlet private var composeRestoreButton: UIBarButtonItem!
   
   // MARK: Object lifecycle
   
@@ -57,9 +59,11 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?)
   {
-    if let scene = segue.identifier {
+    if let scene = segue.identifier
+    {
       let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
+      if let router = router, router.responds(to: selector)
+      {
         router.perform(selector, with: segue)
       }
     }
@@ -67,10 +71,31 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   
   // MARK: View lifecycle
   
+  override func viewWillAppear(_ animated: Bool)
+  {
+    super.viewWillAppear(animated)
+    updateButtons()
+  }
+  
   override func viewDidLoad()
   {
     super.viewDidLoad()
     openNoteToEdit()
+  }
+  
+  private func updateButtons()
+  {
+    if isRecycling
+    {
+      composeRestoreButton.image = UIImage(systemName: "arrow.uturn.up.square")
+      recycleDeleteButton.image = UIImage(systemName: "trash")
+    }
+    else
+    {
+      composeRestoreButton.image = UIImage(systemName: "square.and.pencil")
+      recycleDeleteButton.image = UIImage(systemName: "arrow.3.trianglepath")
+    }
+    
   }
   
   // MARK: Do something
@@ -94,6 +119,20 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
     DispatchQueue.main.async {
       self.textView.text = viewModel.content
       self.title = viewModel.title
+    }
+  }
+  
+  @IBAction func recycleOrDelete(_ sender: Any)
+  {
+    if isRecycling
+    {
+      let request = EditNote.DeleteNote.Request()
+      interactor?.deleteNote(request: request)
+    }
+    else
+    {
+      let request = EditNote.RecycleNote.Request()
+      interactor?.recycleNote(request: request)
     }
   }
   
