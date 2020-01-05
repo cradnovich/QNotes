@@ -32,7 +32,7 @@
 		24D516EE23BC90A2002745EA /* ListFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E823BC90A2002745EA /* ListFoldersViewController.swift */; };
 		24D516EF23BC90A2002745EA /* ListFoldersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516E923BC90A2002745EA /* ListFoldersInteractor.swift */; };
 		24D5170223BC910A002745EA /* ListNotesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FC23BC910A002745EA /* ListNotesPresenter.swift */; };
-		24D5170323BC910A002745EA /* ListNotesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FD23BC910A002745EA /* ListNotesWorker.swift */; };
+		24D5170323BC910A002745EA /* NotesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FD23BC910A002745EA /* NotesWorker.swift */; };
 		24D5170423BC910A002745EA /* ListNotesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FE23BC910A002745EA /* ListNotesRouter.swift */; };
 		24D5170523BC910A002745EA /* ListNotesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D516FF23BC910A002745EA /* ListNotesModels.swift */; };
 		24D5170623BC910A002745EA /* ListNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D5170023BC910A002745EA /* ListNotesViewController.swift */; };
@@ -88,7 +88,7 @@
 		24D516E823BC90A2002745EA /* ListFoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersViewController.swift; sourceTree = "<group>"; };
 		24D516E923BC90A2002745EA /* ListFoldersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoldersInteractor.swift; sourceTree = "<group>"; };
 		24D516FC23BC910A002745EA /* ListNotesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesPresenter.swift; sourceTree = "<group>"; };
-		24D516FD23BC910A002745EA /* ListNotesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesWorker.swift; sourceTree = "<group>"; };
+		24D516FD23BC910A002745EA /* NotesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWorker.swift; sourceTree = "<group>"; };
 		24D516FE23BC910A002745EA /* ListNotesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesRouter.swift; sourceTree = "<group>"; };
 		24D516FF23BC910A002745EA /* ListNotesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesModels.swift; sourceTree = "<group>"; };
 		24D5170023BC910A002745EA /* ListNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +139,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		24A51B7923C20588001973F3 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				24D516FD23BC910A002745EA /* NotesWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
 		24D5169523BC8117002745EA = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +170,7 @@
 		24D516A023BC8117002745EA /* QNotes */ = {
 			isa = PBXGroup;
 			children = (
+				24A51B7923C20588001973F3 /* Workers */,
 				2454B2BD23BE03F400341F65 /* Services */,
 				24A2395123BCC5E600D55B5D /* Models */,
 				24D516D323BC8D7D002745EA /* Scenes */,
@@ -220,7 +229,6 @@
 			isa = PBXGroup;
 			children = (
 				24D516FC23BC910A002745EA /* ListNotesPresenter.swift */,
-				24D516FD23BC910A002745EA /* ListNotesWorker.swift */,
 				24D516FE23BC910A002745EA /* ListNotesRouter.swift */,
 				24D516FF23BC910A002745EA /* ListNotesModels.swift */,
 				24D5170023BC910A002745EA /* ListNotesViewController.swift */,
@@ -390,7 +398,7 @@
 				2454B2C123BE101600341F65 /* NotesFileStore.swift in Sources */,
 				24D516DF23BC8EEF002745EA /* EditNoteRouter.swift in Sources */,
 				24D516EE23BC90A2002745EA /* ListFoldersViewController.swift in Sources */,
-				24D5170323BC910A002745EA /* ListNotesWorker.swift in Sources */,
+				24D5170323BC910A002745EA /* NotesWorker.swift in Sources */,
 				24D516E123BC8EEF002745EA /* EditNoteViewController.swift in Sources */,
 				24D516DD23BC8EEF002745EA /* EditNotePresenter.swift in Sources */,
 				24D516EB23BC90A2002745EA /* ListFoldersWorker.swift in Sources */,

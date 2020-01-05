@@ -16,6 +16,37 @@ enum EditNote
 {
   // MARK: Use cases
   
+  
+  enum CreateNote
+  {
+    struct Request
+    {
+    }
+    struct Response
+    {
+      var note: Note?
+    }
+    struct ViewModel
+    {
+      var note: Note?
+    }
+  }
+  
+  enum RestoreNote
+  {
+    struct Request
+    {
+    }
+    struct Response
+    {
+      var note: Note?
+    }
+    struct ViewModel
+    {
+      var note: Note?
+    }
+  }
+  
   enum OpenNote
   {
     struct Request
@@ -73,5 +104,4 @@ enum EditNote
     {
     }
   }
-
 }

@@ -19,8 +19,8 @@ enum QNotesError : Error
 protocol NotesStoreProtocol
 {
   func createNote(noteToCreate: Note, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
-  func updateNote(noteToUpdate: Note, /*in folder: Folder,*/ completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
-  func deleteNote(id: String, /*from folder: Folder,*/ completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
+  func updateNote(noteToUpdate: Note, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
+  func deleteNote(id: String, from folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   func recycleNote(noteToRecycle: Note, /*in folder: Folder ,*/ completionHandler: @escaping (Result<Note, QNotesError>) -> Void )
   func restoreNote(noteToRestore: Note, /*to folder: Folder,*/ completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   func fetchNotes(in folder: Folder, completionHandler: @escaping (Result<[Note], QNotesError>)  -> Void)

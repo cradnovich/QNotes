@@ -31,19 +31,27 @@ class ListNotesPresenter: ListNotesPresentationLogic
   
   // MARK: Do something
   
-  func presentFetchedNotes(response: ListNotes.FetchNotes.Response)
+  private func prepareForListDisplay(note: Note?) -> ListNotes.DisplayedNote?
   {
-    // TODO: Convert
-    let notesToDisplay = response.notes.map { (note: Note) -> ListNotes.FetchNotes.ViewModel.DisplayedNote in
-      let date = dateFormatter.string(from: note.date)
-      
-      return ListNotes.FetchNotes.ViewModel.DisplayedNote(id: note.id ?? "", date: date, title: note.title)
+    guard let n = note else
+    {
+      return nil
     }
     
-    // TODO: Move this code out when multiple folders are supported.
+    let date = dateFormatter.string(from: n.date)
+    
+    return ListNotes.DisplayedNote(id: n.id ?? "", date: date, title: n.title)
+  }
+  
+  func presentFetchedNotes(response: ListNotes.FetchNotes.Response)
+  {
+    let notesToDisplay = response.notes.compactMap({ self.prepareForListDisplay(note: $0) })
+    
+    // TODO: Move this code out to ListFolders scene (Presenter) when multiple folders are supported.
     let folderTitle: String
     
-    switch response.folder {
+    switch response.folder
+    {
     case .RecycleBin: folderTitle = NSLocalizedString("Recycle Bin", comment: "")
     case .Working(let folderName): folderTitle = NSLocalizedString(folderName, comment: "")
     }
@@ -51,4 +59,11 @@ class ListNotesPresenter: ListNotesPresentationLogic
     let viewModel = ListNotes.FetchNotes.ViewModel(folderTitle: folderTitle, displayedNotes: notesToDisplay)
     viewController?.displayFetchedNotes(viewModel: viewModel)
   }
+  
+//  func presentCreatedNote(response: ListNotes.CreateNote.Response)
+//  {
+//    let noteForDisplay = prepareForListDisplay(note: response.note)
+//    let vm = ListNotes.CreateNote.ViewModel(displayedNote: noteForDisplay)
+//    viewController?.displayCreatedNote(viewModel: vm)
+//  }
 }

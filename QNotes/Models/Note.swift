@@ -11,7 +11,7 @@ import Foundation
 struct Note
 {
   var id: String?
-  var date: Date
+  var date: Date = Date()
   var title: String = "New Note"
   var content: String = ""
 }

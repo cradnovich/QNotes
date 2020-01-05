@@ -15,10 +15,11 @@ import UIKit
 protocol EditNoteBusinessLogic
 {
   func openNote(request: EditNote.OpenNote.Request)
-  //func createNote(request: EditNote.CreateNote.Request)
+  func createNote(request: EditNote.CreateNote.Request)
   func updateNote(request: EditNote.UpdateNote.Request)
   func recycleNote(request: EditNote.RecycleNote.Request)
   func deleteNote(request: EditNote.DeleteNote.Request)
+  func restoreNote(request: EditNote.RestoreNote.Request)
 }
 
 protocol EditNoteDataStore
@@ -29,7 +30,7 @@ protocol EditNoteDataStore
 class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
 {
   var presenter: EditNotePresentationLogic?
-  var worker: EditNoteWorker?
+  var worker = NotesWorker(store: NotesFileStore())
   var note: Note?
   
   // MARK: Do something
@@ -46,9 +47,39 @@ class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
     presenter?.presentNoteToEdit(response: response)
   }
   
+  func createNote(request: EditNote.CreateNote.Request)
+  {
+    let newNote = Note()
+    
+    // FIXME: Add support for other folders, remove hard-coded Inbox
+    worker.createNote(noteToCreate: newNote, in: Folder.Inbox) { (note: Note?) -> Void in
+      self.note = note
+      
+      guard let n = note else
+      {
+        // TODO: Handle note creation failure
+        return
+      }
+      
+      let response = EditNote.OpenNote.Response(note: n)
+      self.presenter?.presentNoteToEdit(response: response)
+    }
+
+  }
+  
   func updateNote(request: EditNote.UpdateNote.Request)
   {
+    guard var n = note else
+    {
+      // TODO: Figure out how this could be called when there isn't an active note.
+      return
+    }
     
+    n.content = request.content
+    
+    worker.updateNote(noteToUpdate: n, in: Folder.Inbox) { (updatedNote: Note?) -> Void in
+      
+    }
   }
   
   func recycleNote(request: EditNote.RecycleNote.Request)
@@ -61,4 +92,9 @@ class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
     
   }
 
+  func restoreNote(request: EditNote.RestoreNote.Request)
+  {
+    
+  }
+  
 }

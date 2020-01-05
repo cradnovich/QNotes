@@ -88,7 +88,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Main" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Inbox" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
                                                     <rect key="frame" x="55" y="0.0" width="249" height="47.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -122,8 +122,8 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="trash" catalog="system" id="6F9-9r-00U">
-                                                    <rect key="frame" x="18.25" y="12.5" width="19.5" height="20.5"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="arrow.3.trianglepath" catalog="system" id="6F9-9r-00U">
+                                                    <rect key="frame" x="17.75" y="14" width="20.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -183,8 +183,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="T3O-wn-iac">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="8WT-cX-kdW"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="8WT-cX-kdW">
+                            <connections>
+                                <action selector="composeOrRestore:" destination="wTv-bB-diq" id="khO-Qb-aEf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="composeRestoreButton" destination="8WT-cX-kdW" id="Yqe-DO-Ygx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smx-yQ-bxm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -208,11 +215,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.3.trianglepath" catalog="system" width="64" height="64"/>
         <image name="folder" catalog="system" width="64" height="46"/>
-        <image name="trash" catalog="system" width="60" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="CVG-5r-pKT"/>
-        <segue reference="gaO-4I-eUH"/>
+        <segue reference="4eJ-eb-nN9"/>
     </inferredMetricsTieBreakers>
 </document>

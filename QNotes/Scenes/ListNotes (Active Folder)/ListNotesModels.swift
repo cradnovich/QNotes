@@ -15,6 +15,14 @@ import UIKit
 enum ListNotes
 {
   
+  struct DisplayedNote
+  {
+    var id: String
+    var date: String
+    var title: String
+    //        var content: String
+  }
+  
   // MARK: Use cases
   
   enum FetchNotes
@@ -29,16 +37,40 @@ enum ListNotes
     }
     struct ViewModel
     {
-      struct DisplayedNote
-      {
-        var id: String
-        var date: String
-        var title: String
-//        var content: String
-      }
-      
       var folderTitle: String
       var displayedNotes: [DisplayedNote]
+    }
+  }
+  
+  enum RecycleNote
+  {
+    struct Request
+    {
+      
+    }
+    struct Response
+    {
+      
+    }
+    struct ViewModel
+    {
+      
+    }
+  }
+  
+  enum DeleteNote
+  {
+    struct Request
+    {
+      
+    }
+    struct Response
+    {
+      
+    }
+    struct ViewModel
+    {
+      
     }
   }
 }

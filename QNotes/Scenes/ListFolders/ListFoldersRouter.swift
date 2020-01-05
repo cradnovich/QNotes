@@ -44,7 +44,6 @@ class ListFoldersRouter: NSObject, ListFoldersRoutingLogic, ListFoldersDataPassi
     if let segue = segue, let destinationVC = segue.destination as? ListNotesViewController,
       var destinationDS = destinationVC.router?.dataStore
     {
-      
       passDataToMainFolder(source: myDS, destination: &destinationDS)
       navigateToMainFolder(source: vc, destination: destinationVC)
     }
@@ -52,7 +51,19 @@ class ListFoldersRouter: NSObject, ListFoldersRoutingLogic, ListFoldersDataPassi
   
   func routeToRecycleBin(segue: UIStoryboardSegue?)
   {
+    guard let myDS = dataStore, let vc = viewController else
+    {
+      // TODO: Handle missing piece error
+      return
+    }
     
+    if let segue = segue, let destinationVC = segue.destination as? ListNotesViewController,
+      var destinationDS = destinationVC.router?.dataStore
+    {
+      
+      passDataToRecycleBin(source: myDS, destination: &destinationDS)
+      navigateToRecycleBin(source: vc, destination: destinationVC)
+    }
   }
   
   //func routeToSomewhere(segue: UIStoryboardSegue?)
@@ -79,12 +90,12 @@ class ListFoldersRouter: NSObject, ListFoldersRoutingLogic, ListFoldersDataPassi
   
   func navigateToMainFolder(source: ListFoldersViewController, destination: ListNotesViewController)
   {
-    
+    destination.isRecycling = false
   }
   
   func navigateToRecycleBin(source: ListFoldersViewController, destination: ListNotesViewController)
   {
-    
+    destination.isRecycling = true
   }
   
   // MARK: Passing data

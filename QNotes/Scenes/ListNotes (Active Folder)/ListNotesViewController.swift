@@ -15,13 +15,17 @@ import UIKit
 protocol ListNotesDisplayLogic: class
 {
   func displayFetchedNotes(viewModel: ListNotes.FetchNotes.ViewModel)
+//  func displayCreatedNote(viewModel: ListNotes.CreateNote.ViewModel)
 }
 
 class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
 {
   var interactor: ListNotesBusinessLogic?
   var router: (NSObjectProtocol & ListNotesRoutingLogic & ListNotesDataPassing)?
-  var displayedNotes: [ListNotes.FetchNotes.ViewModel.DisplayedNote] = []
+  var displayedNotes: [ListNotes.DisplayedNote] = []
+  var isRecycling = false
+  @IBOutlet var composeRestoreButton: UIBarButtonItem!
+  
   
   // MARK: Object lifecycle
   
@@ -57,9 +61,11 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?)
   {
-    if let scene = segue.identifier {
+    if let scene = segue.identifier
+    {
       let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
+      if let router = router, router.responds(to: selector)
+      {
         router.perform(selector, with: segue)
       }
     }
@@ -70,6 +76,16 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   override func viewWillAppear(_ animated: Bool)
   {
     super.viewWillAppear(animated)
+    
+    if isRecycling
+    {
+      composeRestoreButton.image = UIImage(systemName: "arrow.uturn.up.square")
+    }
+    else
+    {
+      composeRestoreButton.image = UIImage(systemName: "square.and.pencil")
+    }
+    
     fetchNotesOnLoad()
   }
   
@@ -89,4 +105,17 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
       self.tableView.reloadData()
     }
   }
+  
+//  func displayCreatedNote(viewModel: ListNotes.CreateNote.ViewModel)
+//  {
+//    guard let dn = viewModel.displayedNote else
+//    {
+//      showErrorMessage(title: "Failed to Create Note", message: "Couldn't compose a new note at this time.") // FIXME: Show a real reason, reduce aggravation…
+//      return
+//    }
+//
+//    self.displayedNotes.insert(dn, at: 0)
+//    router?.routeToEditNote(segue: nil)
+//  }
+  
 }

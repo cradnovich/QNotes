@@ -1,5 +1,5 @@
 //
-//  ListNotesWorker.swift
+//  NotesWorker.swift
 //  QNotes
 //
 //  Created by Meir Radnovich on 01/01/2020.
@@ -12,7 +12,7 @@
 
 import UIKit
 
-class ListNotesWorker
+class NotesWorker
 {
   var notesStore: NotesStoreProtocol
   
@@ -21,6 +21,22 @@ class ListNotesWorker
     notesStore = store
   }
   
+  func createNote(noteToCreate: Note, in folder: Folder, completionHandler: @escaping (Note?) -> Void)
+  {
+    
+    notesStore.createNote(noteToCreate: noteToCreate, in: folder) { (result: Result<Note, QNotesError>) -> Void in
+      
+    }
+  }
+  
+  func updateNote(noteToUpdate: Note, in folder: Folder, completionHandler: @escaping (Note?) -> Void)
+  {
+    notesStore.updateNote(noteToUpdate: noteToUpdate, in: folder) { (result: Result<Note, QNotesError>) -> Void in
+      
+      
+    }
+  }
+
   func fetchNotes(in folder: Folder, completionHandler: @escaping ([Note]) -> Void)
   {
     notesStore.fetchNotes(in: folder) { (result: Result<[Note], QNotesError>) -> Void in
@@ -31,9 +47,10 @@ class ListNotesWorker
         DispatchQueue.main.async {
           completionHandler(notes)
         }
-      case let .failure(error):
+      //case let .failure(error):
+      case .failure:
         DispatchQueue.main.async {
-          
+          // Pass the result?
           completionHandler([])
         }
       }

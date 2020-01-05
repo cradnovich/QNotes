@@ -15,20 +15,23 @@ import UIKit
 protocol ListNotesBusinessLogic
 {
   func fetchNotes(request: ListNotes.FetchNotes.Request)
+//  func createNote(request: ListNotes.CreateNote.Request)
+  func recycleNote(request: ListNotes.RecycleNote.Request)
+  func deleteNote(request: ListNotes.DeleteNote.Request)
 }
 
 protocol ListNotesDataStore
 {
   var folder: Folder { get set }
-  var notes: [Note]? { get }
+  var notes: [Note] { get }
 }
 
 class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
 {
   var presenter: ListNotesPresentationLogic?
   var folder = Folder.Inbox
-  var worker = ListNotesWorker(store: NotesFileStore())
-  var notes: [Note]?
+  var worker = NotesWorker(store: NotesFileStore())
+  var notes: [Note] = []
   
   // MARK: Do something
   
@@ -41,4 +44,20 @@ class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
       self.presenter?.presentFetchedNotes(response: response)
     }
   }
+  
+  func recycleNote(request: ListNotes.RecycleNote.Request)
+  {
+    
+  }
+  
+  func deleteNote(request: ListNotes.DeleteNote.Request)
+  {
+    
+  }
+  
+
+  
+//  func createNote(request: ListNotes.CreateNote.Request)
+//  {
+//  }
 }

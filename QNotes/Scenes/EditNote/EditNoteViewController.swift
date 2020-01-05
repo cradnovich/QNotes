@@ -21,7 +21,8 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
 {
   var interactor: EditNoteBusinessLogic?
   var router: (NSObjectProtocol & EditNoteRoutingLogic & EditNoteDataPassing)?
-
+  var isRecycling = false
+  
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -81,7 +82,6 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   }
   
   @IBOutlet var textView: UITextView!
-  //@IBOutlet weak var nameTextField: UITextField!
   
   func saveNote(content: String)
   {
@@ -96,12 +96,27 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
       self.title = viewModel.title
     }
   }
+  
+  @IBAction func composeOrRestore(_ sender: Any)
+  {
+    if isRecycling
+    {
+      let request = EditNote.RestoreNote.Request()
+      interactor?.restoreNote(request: request)
+    }
+    else
+    {
+      let request = EditNote.CreateNote.Request()
+      interactor?.createNote(request: request)
+    }
+  }
 }
 
 extension EditNoteViewController: UITextViewDelegate
 {
   func textViewDidChange(_ textView: UITextView)
   {
-    
+    let request = EditNote.UpdateNote.Request(content: textView.text)
+    interactor?.updateNote(request: request)
   }
 }

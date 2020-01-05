@@ -76,12 +76,20 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
   
   func passDataToEditNote(source: ListNotesDataStore, destination: inout EditNoteDataStore)
   {
-//    destination.name = source.name
+    guard let idx = viewController?.tableView.indexPathForSelectedRow?.row,
+      idx >= 0, idx < source.notes.count else
+    {
+      viewController?.showErrorMessage(title: "Can't find note to open", message: "Couldn't open note in row \(String(describing: viewController?.tableView.indexPathForSelectedRow?.row)) out of \(source.notes.count) rows")
+      
+      return
+    }
+    
+    destination.note = source.notes[idx]
   }
   
   func passDataToComposeNote(source: ListNotesDataStore, destination: inout EditNoteDataStore)
     {
-  //    destination.name = source.name
+      destination.note = source.notes[0] // New note; edit the top-most one
     }
     
     

@@ -23,7 +23,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     
   }
   
-  func updateNote(noteToUpdate: Note, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
+  func updateNote(noteToUpdate: Note, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   {
      
   }
@@ -55,7 +55,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     }
   }
   
-  func deleteNote(id: String, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
+  func deleteNote(id: String, from folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   {
     
   }
