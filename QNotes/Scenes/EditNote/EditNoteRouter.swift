@@ -54,8 +54,7 @@ class EditNoteRouter: NSObject, EditNoteRoutingLogic, EditNoteDataPassing
   
   func navigateToListNotes(source: EditNoteViewController, destination: ListNotesViewController)
   {
-    //source.navigationController?.popViewController(animated: true)
-    source.navigationController?.navigationController?.popToRootViewController(animated: true)
+    source.navigationController?.navigationController?.popViewController(animated: true)
   }
   
   // MARK: Passing data
