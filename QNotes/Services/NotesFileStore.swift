@@ -18,21 +18,6 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
   
   func createNote(noteToCreate: Note, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   {
-    let folderUrl = url(for: folder)
-    
-    if !fileManager.fileExists(atPath: folderUrl.path)
-    {
-      do
-      {
-        try fileManager.createDirectory(at: folderUrl, withIntermediateDirectories: true, attributes: nil)
-      }
-      catch
-      {
-        completionHandler(.failure(.systemError(error)))
-        return
-      }
-    }
-  
     let note = noteToCreate
     note.id = generateId()
     
@@ -52,10 +37,22 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     completionHandler(res)
   }
   
+  private func ensureExistence(of folder: Folder) throws
+  {
+      let folderUrl = url(for: folder)
+      
+      if !fileManager.fileExists(atPath: folderUrl.path)
+      {
+        try fileManager.createDirectory(at: folderUrl, withIntermediateDirectories: true, attributes: nil)
+      }
+  }
+  
   private func save(note noteToSave: Note, to folder: Folder) -> Result<Note, QNotesError>
   {
     do
     {
+      try ensureExistence(of: folder)
+      
       let u = try fileURL(for: noteToSave, in: folder)
       
       guard let d = noteToSave.content.data(using: .utf8) else
@@ -131,7 +128,25 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
   
   func deleteNote(id: String, completionHandler: @escaping (Result<Note?, QNotesError>) -> Void)
   {
-    
+    fetchNote(id: id, in: Folder.RecycleBin) { (result: Result<Note, QNotesError>) -> Void in
+      switch result
+      {
+      case let .success(n):
+        let u = self.fileURLForNote(withId: id, in: Folder.RecycleBin)
+        
+        do
+        {
+          try self.fileManager.removeItem(at: u)
+          completionHandler(.success(n))
+        }
+        catch
+        {
+          completionHandler(.failure(.systemError(error)))
+        }
+      case let .failure(qe):
+        completionHandler(.failure(qe))
+      }
+    }
   }
   
   func restoreNote(noteToRestore: Note, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
@@ -140,7 +155,7 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     {
       let recycledLocation = try fileURL(for: noteToRestore, in: Folder.RecycleBin)
       
-      guard fileManager.fileExists(atPath: recycledLocation.absoluteString) else
+      guard fileManager.fileExists(atPath: recycledLocation.path) else
       {
         completionHandler(.failure(.fileNotFound(recycledLocation)))
         return
@@ -170,10 +185,12 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
   {
     do
     {
+      try ensureExistence(of: Folder.RecycleBin)
+      
       // FIXME: Hard-coded "active" folder
       let noteLocation = try fileURL(for: noteToRecycle, in: Folder.Inbox)
       
-      guard fileManager.fileExists(atPath: noteLocation.absoluteString) else
+      guard fileManager.fileExists(atPath: noteLocation.path) else
       {
         completionHandler(.failure(.fileNotFound(noteLocation)))
         return
@@ -182,31 +199,29 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
       let recycledLocation = try fileURL(for: noteToRecycle, in: Folder.RecycleBin)
       
       try fileManager.moveItem(at: noteLocation, to: recycledLocation)
+
+      completionHandler(.success(noteToRecycle))
     }
     catch let error as QNotesError
     {
       completionHandler(.failure(error))
-      return
     }
     catch
     {
       completionHandler(.failure(.systemError(error)))
-      return
-    }
-    
-    completionHandler(.success(noteToRecycle))
+    }    
   }
   
   private func note(at url: URL) throws -> Note
   {
     let creationTime = try url.resourceValues(forKeys: [.creationDateKey]).creationDate ?? Date()
     
-    guard let contentData = fileManager.contents(atPath: url.absoluteString), let contentString = String(data: contentData, encoding: .utf8) else
+    guard let contentData = fileManager.contents(atPath: url.path), let contentString = String(data: contentData, encoding: .utf8) else
     {
       throw QNotesError.fileUnreadable(url)
     }
     
-    return Note(id: url.deletingPathExtension().lastPathComponent, date: creationTime, title: "", content: contentString)
+    return Note(id: url.deletingPathExtension().lastPathComponent, date: creationTime, title: generateTitle(from: contentString), content: contentString)
   }
   
   private func url(for folder: Folder) -> URL

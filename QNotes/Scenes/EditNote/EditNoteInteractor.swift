@@ -31,7 +31,7 @@ protocol EditNoteDataStore
 class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
 {
   var presenter: EditNotePresentationLogic?
-  var worker = NotesWorker(store: NotesMemStore())
+  var worker = NotesWorker(store: NotesFileStore())
   var note: Note?
   
   // MARK: Do something

@@ -31,6 +31,11 @@ extension NotesStoreUtilityProtocol
     return UUID().uuidString
   }
   
+  func generateTitle(from content: String) -> String
+  {
+    return content.split(separator: "\n").first?.split(separator: " ").prefix(5).joined(separator: " ") ?? "New Note"
+  }
+  
   func generateTitle(for note: Note) -> String
   {
     if note.content.isEmpty
@@ -39,7 +44,7 @@ extension NotesStoreUtilityProtocol
     }
     else
     {
-      return note.content.split(separator: "\n").first?.split(separator: " ").prefix(5).joined(separator: " ") ?? "New Note"
+      return generateTitle(from: note.content)
     }
   }
 }

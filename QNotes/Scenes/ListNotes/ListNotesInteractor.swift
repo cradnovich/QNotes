@@ -32,7 +32,7 @@ class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
 {
   var presenter: ListNotesPresentationLogic?
   var folder = Folder.Inbox
-  var worker = NotesWorker(store: NotesMemStore())
+  var worker = NotesWorker(store: NotesFileStore())
   var notes: [Note] = []
   
   // MARK: Do something
