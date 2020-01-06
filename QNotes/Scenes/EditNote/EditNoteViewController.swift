@@ -90,13 +90,18 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   {
     super.viewWillAppear(animated)
     setupButtons()
+    
   }
   
   override func viewDidAppear(_ animated: Bool)
   {
     super.viewDidAppear(animated)
     
-    if !isRecycling
+    if isRecycling
+    {
+      textView.resignFirstResponder()
+    }
+    else
     {
       textView.becomeFirstResponder()
     }
@@ -198,5 +203,10 @@ extension EditNoteViewController: UITextViewDelegate
   {
     let request = EditNote.UpdateNote.Request(content: textView.text)
     interactor?.updateNote(request: request)
+  }
+  
+  func textViewShouldBeginEditing(_ textView: UITextView) -> Bool
+  {
+    return !isRecycling
   }
 }

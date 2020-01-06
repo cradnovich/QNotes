@@ -86,6 +86,7 @@ enum EditNote
     }
     struct Response
     {
+      let note: Note?
     }
     struct ViewModel
     {
@@ -99,6 +100,7 @@ enum EditNote
     }
     struct Response
     {
+      let note: Note?
     }
     struct ViewModel
     {

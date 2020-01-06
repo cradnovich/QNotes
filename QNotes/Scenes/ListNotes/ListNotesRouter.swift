@@ -46,6 +46,7 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
       }
       
       passDataToEditNote(source: ds, destination: &destinationDS)
+      navigateToEditNote(source: viewController!, destination: destinationVC)
     } else {
       // TODO!
     }
@@ -67,6 +68,7 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
       }
       
       passDataToComposeNote(source: ds, destination: &destinationDS)
+      navigateToComposeNote(source: viewController!, destination: destinationVC)
     }
     else
     {
@@ -79,11 +81,12 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
   
   func navigateToEditNote(source: ListNotesViewController, destination: EditNoteViewController)
   {
-    
+    destination.isRecycling = source.isRecycling
   }
   
   func navigateToComposeNote(source: ListNotesViewController, destination: EditNoteViewController)
   {
+    destination.isRecycling = false
   }
   
   // MARK: Passing data

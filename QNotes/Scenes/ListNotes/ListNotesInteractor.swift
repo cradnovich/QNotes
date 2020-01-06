@@ -53,35 +53,54 @@ class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
   
   func restoreNote(request: ListNotes.RestoreNote.Request)
   {
-    guard let n = notes.first(where: {$0.id == request.id}) else
+    guard let idx = notes.firstIndex(where: {$0.id == request.id}) else
     {
       // TODO: Error handling
       return
     }
     
+    let n = notes[idx]
+    
     // TODO: Multi-folder support
     worker.restoreNote(noteToRestore: n) { (note: Note?) in
-      //      let response = ListNotes.RecycleNote.Response()
+      if nil != note
+      {
+        self.notes.remove(at: idx)
+      }
     }
   }
   
   func recycleNote(request: ListNotes.RecycleNote.Request)
   {
-    guard let n = notes.first(where: {$0.id == request.id}) else
+    guard let idx = notes.firstIndex(where: {$0.id == request.id}) else
     {
       // TODO: Error handling
       return
     }
     
+    let n = notes[idx]
+
     worker.recycleNote(noteToRecycle: n, in: folder) { (note: Note?) in
-//      let response = ListNotes.RecycleNote.Response()
+      if nil != note
+      {
+        self.notes.remove(at: idx)
+      }
     }
   }
   
   func deleteNote(request: ListNotes.DeleteNote.Request)
   {
+    guard let idx = notes.firstIndex(where: { $0.id == request.id }) else
+    {
+      // TODO: Error handling
+      return
+    }
+    
     worker.deleteNote(id: request.id) { (note: Note?) in
-      // TODO
+      if nil != note
+      {
+        self.notes.remove(at: idx)
+      }
     }
   }
 

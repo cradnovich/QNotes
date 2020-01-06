@@ -31,30 +31,36 @@ class EditNoteRouter: NSObject, EditNoteRoutingLogic, EditNoteDataPassing
   
   func routeToListNotes(segue: UIStoryboardSegue?)
   {
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
+    if let segue = segue
+    {
+        // TODO?
+      
+    }
+    else
+    {
+      
+      guard let ds = dataStore, let vc = viewController, let splitRoot = vc.splitViewController, let masterNav = splitRoot.viewControllers.first as? UINavigationController, let destinationVC = masterNav.viewControllers.first(where: {$0 is ListNotesViewController}) as? ListNotesViewController, var destinationDS = destinationVC.router?.dataStore else
+      {
+        // TODO
+        return
+      }
+      
+      passDataToListNotes(source: ds, destination: &destinationDS)
+      navigateToListNotes(source: vc, destination: destinationVC)
+    }
   }
 
   // MARK: Navigation
   
   func navigateToListNotes(source: EditNoteViewController, destination: ListNotesViewController)
   {
-    source.navigationController?.popViewController(animated: true)
+    //source.navigationController?.popViewController(animated: true)
+    source.navigationController?.navigationController?.popToRootViewController(animated: true)
   }
   
   // MARK: Passing data
   
   func passDataToListNotes(source: EditNoteDataStore, destination: inout ListNotesDataStore)
   {
-//    destination.name = source.name
   }
 }

@@ -24,6 +24,7 @@ protocol EditNoteBusinessLogic
 
 protocol EditNoteDataStore
 {
+  
   var note: Note? { get set }
 }
 
@@ -77,6 +78,7 @@ class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
     
     n.content = request.content
     
+    // TODO: Multi-folder support
     worker.updateNote(noteToUpdate: n, in: Folder.Inbox) { (updatedNote: Note?) -> Void in
       self.note = updatedNote
       let response = EditNote.UpdateNote.Response(note: updatedNote)
@@ -86,17 +88,46 @@ class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
   
   func recycleNote(request: EditNote.RecycleNote.Request)
   {
+    guard let n = note else
+    {
+      // TODO: Handle impossible condition
+      return
+    }
     
+    // TODO: Multi-folder support
+    worker.recycleNote(noteToRecycle: n, in: Folder.Inbox) { (recycledNote: Note?) -> Void in
+//      self.note = recycledNote // Unneeded, because the editor will be dismissed
+      let response = EditNote.RecycleNote.Response(note: recycledNote)
+      self.presenter?.presentRecycledNote(response: response) // Nothing to present
+    }
   }
   
   func deleteNote(request: EditNote.DeleteNote.Request)
   {
+    guard let id = note?.id else
+    {
+      // TODO: Handle impossible condition
+      return
+    }
     
+    worker.deleteNote(id: id) { (deletedNote: Note?) -> Void in
+      let response = EditNote.DeleteNote.Response(note: deletedNote)
+      self.presenter?.presentDeletedNote(response: response) // Nothing to present or do...
+    }
   }
 
   func restoreNote(request: EditNote.RestoreNote.Request)
   {
+    guard let n = note else
+    {
+      // TODO: Handle impossible condition
+      return
+    }
     
+    worker.restoreNote(noteToRestore: n) { (restoredNote: Note?) -> Void in
+      let response = EditNote.RestoreNote.Response(note: restoredNote)
+      self.presenter?.presentRestoredNote(response: response)
+    }
   }
   
 }
