@@ -120,4 +120,17 @@ enum ListNotes
       
     }
   }
+  
+  enum EmptyRecycleBin
+  {
+    struct Request
+    {
+    }
+    struct Response
+    {
+    }
+    struct ViewModel
+    {
+    }
+  }
 }

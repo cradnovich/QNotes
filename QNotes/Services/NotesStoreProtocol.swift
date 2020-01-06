@@ -18,6 +18,7 @@ protocol NotesStoreProtocol
   func restoreNote(noteToRestore: Note, /*to folder: Folder,*/ completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
   func fetchNotes(in folder: Folder, completionHandler: @escaping (Result<[Note], QNotesError>)  -> Void)
   func fetchNote(id: String, in folder: Folder, completionHandler: @escaping (Result<Note, QNotesError>) -> Void)
+  func emptyRecycleBin(completionHandler: @escaping (Result<Void, QNotesError>) -> Void)
 }
 
 protocol NotesStoreUtilityProtocol {}

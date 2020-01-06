@@ -16,6 +16,7 @@ protocol ListNotesDisplayLogic: class
 {
   func displayFetchedNotes(viewModel: ListNotes.FetchNotes.ViewModel)
   func displayCreatedNote(viewModel: ListNotes.CreateNote.ViewModel)
+  func displayEmptyRecycleBin(viewModel: ListNotes.EmptyRecycleBin.ViewModel)
 }
 
 class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
@@ -24,8 +25,9 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   var router: (NSObjectProtocol & ListNotesRoutingLogic & ListNotesDataPassing)?
   var displayedNotes: [ListNotes.DisplayedNote] = []
   var isRecycling = false
-  @IBOutlet var addNoteButton: UIBarButtonItem!
-  
+
+  private weak var addButton: UIBarButtonItem?
+  private weak var emptyButton: UIBarButtonItem?
   
   // MARK: Object lifecycle
   
@@ -77,12 +79,22 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
   {
     super.viewDidLoad()
     
-    if !isRecycling
+    let rightButton: UIBarButtonItem
+    
+    if isRecycling
     {
-      let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote(_:)))
-      
-      navigationItem.rightBarButtonItem = addButton
+      rightButton = UIBarButtonItem(title: NSLocalizedString("Empty", comment: ""), style: .done, target: self, action: #selector(emptyBin(_:)))
+
+      emptyButton = rightButton
     }
+    else
+    {
+      rightButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote(_:)))
+
+      addButton = rightButton
+    }
+    
+    navigationItem.rightBarButtonItem = rightButton
   }
   
   override func viewWillAppear(_ animated: Bool)
@@ -105,6 +117,11 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
       self.title = viewModel.folderTitle
       self.displayedNotes = viewModel.displayedNotes
       self.tableView.reloadData()
+      
+      if self.isRecycling
+      {
+        self.emptyButton?.isEnabled = !viewModel.displayedNotes.isEmpty
+      }
     }
   }
   
@@ -122,10 +139,25 @@ class ListNotesViewController: UITableViewController, ListNotesDisplayLogic
     performSegue(withIdentifier: "ComposeNote", sender: nil)
   }
   
+  func displayEmptyRecycleBin(viewModel: ListNotes.EmptyRecycleBin.ViewModel)
+  {
+    displayedNotes = []
+    emptyButton?.isEnabled = false
+    tableView.reloadData()
+    
+    router?.routeToListFolders(segue: nil)
+  }
+  
   @IBAction func addNote(_ sender: Any)
   {
     let request = ListNotes.CreateNote.Request()
     interactor?.createNote(request: request)
+  }
+  
+  @IBAction func emptyBin(_ sender: Any)
+  {
+    let request = ListNotes.EmptyRecycleBin.Request()
+    interactor?.emptyRecycleBin(request: request)
   }
   
   private func contextualRecycleAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction

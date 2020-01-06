@@ -127,4 +127,21 @@ class NotesWorker
       }
     }
   }
+  
+  func emptyRecycleBin(completionHandler: @escaping (Bool) -> Void)
+  {
+    notesStore.emptyRecycleBin { (result: Result<Void, QNotesError>) -> Void in
+      switch result
+      {
+      case .success:
+        DispatchQueue.main.async {
+          completionHandler(true)
+        }
+      case .failure:
+        DispatchQueue.main.async {
+          completionHandler(false)
+        }
+      }
+    }
+  }
 }

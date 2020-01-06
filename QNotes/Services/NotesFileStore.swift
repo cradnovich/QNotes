@@ -209,7 +209,28 @@ class NotesFileStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     catch
     {
       completionHandler(.failure(.systemError(error)))
-    }    
+    }
+  }
+  
+  func emptyRecycleBin(completionHandler: @escaping (Result<Void, QNotesError>) -> Void)
+  {
+    let binFolder = url(for: Folder.RecycleBin)
+    
+    do
+    {
+      let recycledFiles = try fileManager.contentsOfDirectory(at: binFolder, includingPropertiesForKeys: [])
+      
+      for fileURL in recycledFiles
+      {
+        try fileManager.removeItem(at: fileURL)
+      }
+      
+      completionHandler(.success(()))
+    }
+    catch
+    {
+      completionHandler(.failure(.systemError(error)))
+    }
   }
   
   private func note(at url: URL) throws -> Note

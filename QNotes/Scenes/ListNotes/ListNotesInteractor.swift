@@ -20,6 +20,7 @@ protocol ListNotesBusinessLogic
   func recycleNote(request: ListNotes.RecycleNote.Request)
   func deleteNote(request: ListNotes.DeleteNote.Request)
   func restoreNote(request: ListNotes.RestoreNote.Request)
+  func emptyRecycleBin(request: ListNotes.EmptyRecycleBin.Request)
 }
 
 protocol ListNotesDataStore
@@ -101,6 +102,22 @@ class ListNotesInteractor: ListNotesBusinessLogic, ListNotesDataStore
       {
         self.notes.remove(at: idx)
       }
+    }
+  }
+  
+  func emptyRecycleBin(request: ListNotes.EmptyRecycleBin.Request)
+  {
+    worker.emptyRecycleBin { (didSucceed: Bool) -> Void in
+      guard didSucceed else
+      {
+        return
+      }
+      
+      self.notes = []
+      
+      let response = ListNotes.EmptyRecycleBin.Response()
+      self.presenter?.presentEmptyRecycleBin(response: response)
+      
     }
   }
 

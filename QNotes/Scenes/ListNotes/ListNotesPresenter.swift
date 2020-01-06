@@ -16,6 +16,9 @@ protocol ListNotesPresentationLogic
 {
   func presentFetchedNotes(response: ListNotes.FetchNotes.Response)
   func presentCreatedNote(response: ListNotes.CreateNote.Response)
+  
+  // Do Nothing
+  func presentEmptyRecycleBin(response: ListNotes.EmptyRecycleBin.Response)
 }
 
 class ListNotesPresenter: ListNotesPresentationLogic
@@ -66,5 +69,11 @@ class ListNotesPresenter: ListNotesPresentationLogic
     let noteForDisplay = prepareForListDisplay(note: response.note)
     let vm = ListNotes.CreateNote.ViewModel(displayedNote: noteForDisplay)
     viewController?.displayCreatedNote(viewModel: vm)
+  }
+  
+  func presentEmptyRecycleBin(response: ListNotes.EmptyRecycleBin.Response)
+  {
+    let vm = ListNotes.EmptyRecycleBin.ViewModel()
+    viewController?.displayEmptyRecycleBin(viewModel: vm)
   }
 }

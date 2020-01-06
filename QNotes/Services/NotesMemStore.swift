@@ -112,4 +112,19 @@ class NotesMemStore : NotesStoreProtocol, NotesStoreUtilityProtocol
     
     completionHandler(.failure(.noteNotFound(id)))
   }
+  
+  func emptyRecycleBin(completionHandler: @escaping (Result<Void, QNotesError>) -> Void)
+  {
+    guard nil != type(of: self).dummyData[Folder.RecycleBin] else
+    {
+      completionHandler(.failure(.deletionFailure("Recycle Bin was already empty")))
+      return
+    }
+    
+    type(of: self).dummyData[Folder.RecycleBin] = []
+    
+    completionHandler(.success(()))
+  }
+
+
 }

@@ -16,6 +16,7 @@ import UIKit
 {
   func routeToEditNote(segue: UIStoryboardSegue?)
   func routeToComposeNote(segue: UIStoryboardSegue?)
+  func routeToListFolders(segue: UIStoryboardSegue?)
 }
 
 protocol ListNotesDataPassing
@@ -77,6 +78,25 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
     
   }
   
+  func routeToListFolders(segue: UIStoryboardSegue?)
+  {
+    if let segue = segue
+    {
+      // TODO
+    }
+    else
+    {
+      guard let vc = viewController, let ds = dataStore, let vcs = vc.navigationController?.viewControllers, vcs.count > 1, let destinationVC = vcs[vcs.count - 2] as? ListFoldersViewController, var destinationDS = destinationVC.router?.dataStore else
+      {
+        // TODO: Error handling
+        return
+      }
+      
+      passDataToListFolders(source: ds, destination: &destinationDS)
+      navigateToListFolders(source: vc, destination: destinationVC)
+    }
+  }
+  
   // MARK: Navigation
   
   func navigateToEditNote(source: ListNotesViewController, destination: EditNoteViewController)
@@ -87,6 +107,11 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
   func navigateToComposeNote(source: ListNotesViewController, destination: EditNoteViewController)
   {
     destination.isRecycling = false
+  }
+  
+  func navigateToListFolders(source: ListNotesViewController, destination: ListFoldersViewController)
+  {
+    source.navigationController?.popViewController(animated: true)
   }
   
   // MARK: Passing data
@@ -107,5 +132,10 @@ class ListNotesRouter: NSObject, ListNotesRoutingLogic, ListNotesDataPassing
   func passDataToComposeNote(source: ListNotesDataStore, destination: inout EditNoteDataStore)
   {
     destination.note = source.notes[0] // New note; edit the top-most one
+  }
+  
+  func passDataToListFolders(source: ListNotesDataStore, destination: inout ListFoldersDataStore)
+  {
+    
   }
 }
