@@ -79,6 +79,8 @@ class EditNoteInteractor: EditNoteBusinessLogic, EditNoteDataStore
     
     worker.updateNote(noteToUpdate: n, in: Folder.Inbox) { (updatedNote: Note?) -> Void in
       self.note = updatedNote
+      let response = EditNote.UpdateNote.Response(note: updatedNote)
+      self.presenter?.presentUpdatedNote(response: response)
     }
   }
   

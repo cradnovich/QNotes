@@ -15,6 +15,7 @@ import UIKit
 protocol EditNoteDisplayLogic: class
 {
   func displayNoteToEdit(viewModel: EditNote.OpenNote.ViewModel)
+  func displayUpdatedNote(viewModel: EditNote.UpdateNote.ViewModel)
 }
 
 class EditNoteViewController: UIViewController, EditNoteDisplayLogic
@@ -22,8 +23,22 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   var interactor: EditNoteBusinessLogic?
   var router: (NSObjectProtocol & EditNoteRoutingLogic & EditNoteDataPassing)?
   var isRecycling = false
-  @IBOutlet private var recycleDeleteButton: UIBarButtonItem!
-  @IBOutlet private var composeRestoreButton: UIBarButtonItem!
+  @IBOutlet private lazy var recycleButton: UIBarButtonItem? = {
+    let rb = UIBarButtonItem(image: UIImage(systemName: "arrow.3.trianglepath"), style: .plain, target: self, action: #selector(recycleButtonPressed(_:)))
+    return rb
+  }()
+  @IBOutlet private lazy var deleteButton: UIBarButtonItem? = {
+    let db = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteButtonPressed(_:)))
+    return db
+  }()
+  @IBOutlet private lazy var composeButton: UIBarButtonItem? = {
+    let cb = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(composeButtonPressed(_:)))
+    return cb
+  }()
+  @IBOutlet private lazy var restoreButton: UIBarButtonItem? = {
+    let rb = UIBarButtonItem(image: UIImage(systemName: "arrow.uturn.up.square"), style: .plain, target: self, action: #selector(restoreButtonPressed(_:)))
+    return rb
+  }()
   
   // MARK: Object lifecycle
   
@@ -74,7 +89,7 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   override func viewWillAppear(_ animated: Bool)
   {
     super.viewWillAppear(animated)
-    
+    setupButtons()
   }
   
   override func viewDidAppear(_ animated: Bool)
@@ -90,25 +105,31 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    updateButtons()
-    
-    
     openNoteToEdit()
   }
   
-  private func updateButtons()
+  private func setupButtons()
   {
     if isRecycling
     {
-      composeRestoreButton.image = UIImage(systemName: "arrow.uturn.up.square")
-      recycleDeleteButton.image = UIImage(systemName: "trash")
+      guard let db = deleteButton, let rb = restoreButton else
+      {
+        // TODO: How could this happen?
+        return
+      }
+      
+      navigationItem.rightBarButtonItems = [rb, db]
     }
     else
     {
-      composeRestoreButton.image = UIImage(systemName: "square.and.pencil")
-      recycleDeleteButton.image = UIImage(systemName: "arrow.3.trianglepath")
+      guard let cb = composeButton, let rb = recycleButton else
+      {
+        // TODO: How could this happen?
+        return
+      }
+      
+      navigationItem.rightBarButtonItems = [cb, rb]
     }
-    
   }
   
   // MARK: Do something
@@ -135,32 +156,39 @@ class EditNoteViewController: UIViewController, EditNoteDisplayLogic
     }
   }
   
-  @IBAction func recycleOrDelete(_ sender: Any)
+  func displayUpdatedNote(viewModel: EditNote.UpdateNote.ViewModel)
   {
-    if isRecycling
-    {
-      let request = EditNote.DeleteNote.Request()
-      interactor?.deleteNote(request: request)
-    }
-    else
-    {
-      let request = EditNote.RecycleNote.Request()
-      interactor?.recycleNote(request: request)
+    DispatchQueue.main.async {
+      self.title = viewModel.note?.title
+      // Ignore the note's content, since the content is being edited actively here
     }
   }
   
-  @IBAction func composeOrRestore(_ sender: Any)
+  @IBAction func recycleButtonPressed(_ sender: Any)
   {
-    if isRecycling
-    {
-      let request = EditNote.RestoreNote.Request()
-      interactor?.restoreNote(request: request)
-    }
-    else
-    {
-      let request = EditNote.CreateNote.Request()
-      interactor?.createNote(request: request)
-    }
+    let request = EditNote.RecycleNote.Request()
+    interactor?.recycleNote(request: request)
+    router?.routeToListNotes(segue: nil)
+  }
+  
+  @IBAction func deleteButtonPressed(_ sender: Any)
+  {
+    let request = EditNote.DeleteNote.Request()
+    interactor?.deleteNote(request: request)
+    router?.routeToListNotes(segue: nil)
+  }
+  
+  @IBAction func composeButtonPressed(_ sender: Any)
+  {
+    let request = EditNote.CreateNote.Request()
+    interactor?.createNote(request: request)
+  }
+  
+  @IBAction func restoreButtonPressed(_ sender: Any)
+  {
+    let request = EditNote.RestoreNote.Request()
+    interactor?.restoreNote(request: request)
+    router?.routeToListNotes(segue: nil)
   }
 }
 

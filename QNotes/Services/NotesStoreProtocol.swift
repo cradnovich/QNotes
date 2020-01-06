@@ -39,7 +39,7 @@ extension NotesStoreUtilityProtocol
     }
     else
     {
-      return note.content.split(separator: "\n").first?.split(separator: " ").prefix(upTo: 5).joined(separator: " ") ?? "New Note"
+      return note.content.split(separator: "\n").first?.split(separator: " ").prefix(5).joined(separator: " ") ?? "New Note"
     }
   }
 }

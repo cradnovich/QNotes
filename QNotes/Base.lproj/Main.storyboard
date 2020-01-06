@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pVx-HU-K4Q">
-                                <rect key="frame" x="0.0" y="44" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -44,7 +44,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="pVx-HU-K4Q" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="6EW-yx-Gbi"/>
+                            <constraint firstItem="VUw-jc-0yf" firstAttribute="bottom" secondItem="pVx-HU-K4Q" secondAttribute="bottom" id="5eI-R2-LzP"/>
                             <constraint firstItem="pVx-HU-K4Q" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="L8Y-m6-LcW"/>
                             <constraint firstItem="pVx-HU-K4Q" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="iQS-o1-qBU"/>
                             <constraint firstItem="pVx-HU-K4Q" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" id="k62-s4-ZbO"/>
@@ -52,23 +52,8 @@
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="compose" id="M9u-hg-0or">
-                                <connections>
-                                    <action selector="composeOrRestore:" destination="JEX-9P-axG" id="hi2-50-XKw"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="trash" id="sS9-U0-imS">
-                                <connections>
-                                    <action selector="recycleOrDelete:" destination="JEX-9P-axG" id="X1s-4T-hGe"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="composeRestoreButton" destination="M9u-hg-0or" id="J5r-uY-qlb"/>
-                        <outlet property="recycleDeleteButton" destination="sS9-U0-imS" id="lg1-xp-LrM"/>
                         <outlet property="textView" destination="pVx-HU-K4Q" id="2ZT-mx-0Kx"/>
                     </connections>
                 </viewController>

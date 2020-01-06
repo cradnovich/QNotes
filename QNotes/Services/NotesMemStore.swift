@@ -29,6 +29,7 @@ class NotesMemStore : NotesStoreProtocol, NotesStoreUtilityProtocol
   {
     if let idx = type(of: self).dummyData[folder]?.firstIndex(of: noteToUpdate)
     {
+      noteToUpdate.title = generateTitle(for: noteToUpdate)
       type(of: self).dummyData[folder]?[idx] = noteToUpdate
       
       completionHandler(.success(noteToUpdate))

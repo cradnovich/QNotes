@@ -15,6 +15,7 @@ import UIKit
 protocol EditNotePresentationLogic
 {
   func presentNoteToEdit(response: EditNote.OpenNote.Response)
+  func presentUpdatedNote(response: EditNote.UpdateNote.Response)
 }
 
 class EditNotePresenter: EditNotePresentationLogic
@@ -27,5 +28,11 @@ class EditNotePresenter: EditNotePresentationLogic
   {
     let viewModel = EditNote.OpenNote.ViewModel(title: response.note.title, content: response.note.content)
     viewController?.displayNoteToEdit(viewModel: viewModel)
+  }
+  
+  func presentUpdatedNote(response: EditNote.UpdateNote.Response)
+  {
+    let viewModel = EditNote.UpdateNote.ViewModel(note: response.note)
+    viewController?.displayUpdatedNote(viewModel: viewModel)
   }
 }
